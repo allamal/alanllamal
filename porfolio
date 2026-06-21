@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Alan Llamal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Mantenemos exactamente tus mismos estilos y variables */
+        :root {
+            --bg-color: #0b1121;
+            --surface-color: #151e32;
+            --primary-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        .nav-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 50px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary-color);
+            color: #0f172a;
+        }
+
+        /* --- PORTFOLIO HEADER --- */
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        /* --- GRILLA DE PROYECTOS --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.1);
+        }
+
+        .project-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: #7dd3fc;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Botón Volver -->
+        <nav class="nav-bar">
+            <a href="index.html" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+            </a>
+        </nav>
+
+        <!-- Cabecera -->
+        <header>
+            <h1 class="page-title">Portfolio de Proyectos</h1>
+            <p class="page-subtitle">Explorá algunas de las soluciones, automatizaciones y experiencias de aprendizaje que diseñé.</p>
+        </header>
+
+        <!-- Proyectos -->
+        <div class="portfolio-grid">
+            
+            <!-- Tarjeta de Proyecto 1 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Apps Script</span>
+                        <span class="tag">Automatización</span>
+                    </div>
+                    <h3 class="project-title">Sistema de Seguimiento Académico</h3>
+                    <p class="project-description">Desarrollo de una aplicación personalizada en Google Apps Script para gestionar el avance de los estudiantes, automatizar alertas de inactividad y optimizar los tiempos del equipo de tutoría.</p>
+                    <a href="#" class="project-link">Ver detalles <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Tarjeta de Proyecto 2 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Diseño Instruccional</span>
+                        <span class="tag">E-Learning</span>
+                    </div>
+                    <h3 class="project-title">Rediseño de Cursada a Distancia</h3>
+                    <p class="project-description">Estructuración y planificación de materias cuatrimestrales, mejorando la interfaz en el campus virtual y creando guías interactivas para facilitar la retención del alumno.</p>
+                    <a href="#" class="project-link">Ver detalles <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Tarjeta de Proyecto 3 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <i class="fa-solid fa-table-list"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Procesos</span>
+                        <span class="tag">Gestión</span>
+                    </div>
+                    <h3 class="project-title">Optimización de Equivalencias</h3>
+                    <p class="project-description">Creación de flujos de trabajo eficientes para evaluar homologaciones, sincronizar datos con bases operativas y reducir el tiempo de respuesta a los ingresantes.</p>
+                    <a href="#" class="project-link">Ver detalles <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
