@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Mantenemos exactamente tus mismos estilos y variables */
         :root {
             --bg-color: #0b1121;
             --surface-color: #151e32;
@@ -187,66 +186,133 @@
         </nav>
 
         <!-- Cabecera -->
-        <header>
-            <h1 class="page-title">Portfolio de Proyectos</h1>
-            <p class="page-subtitle">Explorá algunas de las soluciones, automatizaciones y experiencias de aprendizaje que diseñé.</p>
+        <header style="margin-bottom: 40px;">
+            <h1 class="page-title">Portfolio de proyectos</h1>
+            <p class="page-subtitle">Soluciones operativas y experiencias de aprendizaje diseñadas para potenciar la gestión académica.</p>
         </header>
 
-        <!-- Proyectos -->
+        <!-- BOTONES DE FILTRADO (TABS) -->
+        <div style="display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+            <button class="filter-btn active" onclick="filterProjects('all', this)" style="padding: 12px 24px; background: var(--primary-color); color: #0f172a; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Todos los proyectos</button>
+            <button class="filter-btn" onclick="filterProjects('learning', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Proyectos e-learning</button>
+            <button class="filter-btn" onclick="filterProjects('tech', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Diseño de soluciones operativas</button>
+        </div>
+
+        <!-- GRILLA DE PROYECTOS -->
         <div class="portfolio-grid">
             
-<!-- Tarjeta de Proyecto 1 -->
-            <article class="project-card">
+            <!-- Tarjeta 1: CURSO STORYLINE (Categoría: learning) -->
+            <article class="project-card" data-category="learning">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de Curso en Articulate Storyline" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de curso en Articulate Storyline" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
                         <span class="tag">Storyline</span>
-                        <span class="tag">Diseño Instruccional</span>
-                        <span class="tag">E-Learning</span>
+                        <span class="tag">Diseño instruccional</span>
                     </div>
-                    <h3 class="project-title">Curso Interactivo de Formación</h3>
-                    <p class="project-description">Diseño y desarrollo de un módulo de aprendizaje interactivo utilizando Articulate Storyline. Optimización de la experiencia de navegación del estudiante, estructuración didáctica de contenidos complejos y creación de evaluaciones dinámicas.</p>
+                    <h3 class="project-title">Curso en Articulate Storyline</h3>
+                    <p class="project-description">Transformación de contenidos teóricos complejos en un trayecto interactivo autogestionado. Desarrollo de navegación personalizada, dinámicas gamificadas y recursos visuales enfocados en maximizar la retención y el engagement del estudiante.</p>
                     <a href="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
-            <!-- Tarjeta de Proyecto 2 -->
-            <article class="project-card">
-                <div class="project-image">
-                    <i class="fa-solid fa-graduation-cap"></i>
+            <!-- Tarjeta 2: CURSO RISE (Categoría: learning) -->
+            <article class="project-card" data-category="learning">
+                <div class="project-image" style="background: #1e293b; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--primary-color);">
+                    <i class="fa-solid fa-book-open"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Diseño Instruccional</span>
-                        <span class="tag">E-Learning</span>
+                        <span class="tag">Rise 360</span>
+                        <span class="tag">Responsivo</span>
                     </div>
-                    <h3 class="project-title">Rediseño de Cursada a Distancia</h3>
-                    <p class="project-description">Estructuración y planificación de materias cuatrimestrales, mejorando la interfaz en el campus virtual y creando guías interactivas para facilitar la retención del alumno.</p>
-                    <a href="#" class="project-link">Ver detalles <i class="fa-solid fa-arrow-right"></i></a>
+                    <h3 class="project-title">Curso en Articulate Rise</h3>
+                    <p class="project-description">Desarrollo de contenidos formativos con estructura adaptativa y ágil. Creación de lecciones modulares con microaprendizaje, componentes interactivos integrados y evaluaciones de desempeño optimizadas para el consumo en dispositivos móviles.</p>
+                    <a href="#" class="project-link">Explorar módulo <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
-            <!-- Tarjeta de Proyecto 3 -->
-            <article class="project-card">
-                <div class="project-image">
+            <!-- Tarjeta 3: CLASES EN HTML (Categoría: learning) -->
+            <article class="project-card" data-category="learning">
+                <div class="project-image" style="background: #1e293b; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--primary-color);">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">HTML5 & CSS</span>
+                        <span class="tag">Maquetación didáctica</span>
+                    </div>
+                    <h3 class="project-title">Diseño de clases en HTML</h3>
+                    <p class="project-description">Maquetación a medida de plantillas educativas nativas para entornos virtuales. Optimización estética y funcional que reemplaza los textos planos por interfaces scannables, con jerarquías visuales claras, elementos destacados y compatibilidad cross-platform.</p>
+                    <a href="#" class="project-link">Ver maquetación <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Tarjeta 4: APP SCRIPT SEGUIMIENTO (Categoría: tech) -->
+            <article class="project-card" data-category="tech">
+                <div class="project-image" style="background: #1e293b; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--primary-color);">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Google Apps Script</span>
+                        <span class="tag">Data analytics</span>
+                    </div>
+                    <h3 class="project-title">Sistema de alertas dinámicas y detección de deserción</h3>
+                    <p class="project-description">Desarrollo de una aplicación basada en GAS para la extracción automatizada de métricas de avance en el campus virtual. El sistema procesa logs de interacción, identifica estudiantes en situación de atraso crítico y automatiza el flujo de comunicación estratégica del equipo de tutoría.</p>
+                    <a href="#" class="project-link">Ver arquitectura <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Tarjeta 5: EQUIVALENCIAS / PROCESOS (Categoría: tech) -->
+            <article class="project-card" data-category="tech">
+                <div class="project-image" style="background: #1e293b; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--primary-color);">
                     <i class="fa-solid fa-table-list"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Procesos</span>
-                        <span class="tag">Gestión</span>
+                        <span class="tag">Google Workspace API</span>
+                        <span class="tag">Gestión operativa</span>
                     </div>
-                    <h3 class="project-title">Optimización de Equivalencias</h3>
-                    <p class="project-description">Creación de flujos de trabajo eficientes para evaluar homologaciones, sincronizar datos con bases operativas y reducir el tiempo de respuesta a los ingresantes.</p>
-                    <a href="#" class="project-link">Ver detalles <i class="fa-solid fa-arrow-right"></i></a>
+                    <h3 class="project-title">Ecosistema automatizado para gestión de homologaciones</h3>
+                    <p class="project-description">Estructuración de un flujo integrado entre bases de datos compartidas y plantillas automatizadas de resolución académica. Centraliza el control documental de ingresantes, unifica criterios de equivalencias entre carreras y optimiza en un 60% el tiempo de respuesta del área.</p>
+                    <a href="#" class="project-link">Ver caso de estudio <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
         </div>
 
     </div>
+
+    <!-- SCRIPT DE FILTRADO INTERACTIVO -->
+    <script>
+        function filterProjects(category, clickedButton) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Restablecer estilos de todos los botones
+            buttons.forEach(btn => {
+                btn.style.background = 'var(--surface-color)';
+                btn.style.color = 'var(--text-main)';
+                btn.style.border = '1px solid rgba(255,255,255,0.1)';
+            });
+            
+            // Aplicar estilos activos al botón seleccionado
+            clickedButton.style.background = 'var(--primary-color)';
+            clickedButton.style.color = '#0f172a';
+            clickedButton.style.border = 'none';
+
+            // Filtrar las tarjetas de la grilla
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
