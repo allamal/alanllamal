@@ -110,13 +110,18 @@
 
         .project-image {
             width: 100%;
-            height: 200px;
-            background-color: #1e293b;
+            height: 220px;
+            background-color: #0f172a;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+
+        .project-image img, .project-image video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .project-content {
@@ -290,8 +295,8 @@
             
             <!-- Tarjeta 1: CURSO STORYLINE (Categoría: learning) -->
             <article class="project-card" data-category="learning">
-                <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de curso en Articulate Storyline" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="project-image">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de curso en Articulate Storyline">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -306,8 +311,8 @@
 
             <!-- Tarjeta 2: CURSO RISE (Categoría: learning) -->
             <article class="project-card" data-category="learning">
-                <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="project-image">
+                    <video autoplay loop muted playsinline>
                         <source src="https://allamal.github.io/Inicio/screen-recording_Te9Al5oG.mp4" type="video/mp4">
                         Tu navegador no soporta el formato de video.
                     </video>
@@ -325,8 +330,8 @@
 
             <!-- Tarjeta 3: CLASES EN HTML (Categoría: learning) -->
             <article class="project-card" data-category="learning">
-                <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="project-image">
+                    <video autoplay loop muted playsinline>
                         <source src="https://allamal.github.io/Inicio/html-lms_2SmtbJN6.mp4" type="video/mp4">
                         Tu navegador no soporta el formato de video.
                     </video>
@@ -344,8 +349,8 @@
 
             <!-- Tarjeta 4: DASHBOARD INSCRIPCIONES (Categoría: tech) -->
             <article class="project-card" data-category="tech">
-                <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1e293b;">
-                    <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para demo de dashboard ]</span>
+                <div class="project-image">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/DASH%20BTF.gif" alt="Demo Dashboard Convocatorias">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -361,8 +366,8 @@
 
             <!-- Tarjeta 5: GESTIÓN ACADÉMICA & LEARNING ANALYTICS (Categoría: tech) -->
             <article class="project-card" data-category="tech">
-                <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1e293b;">
-                    <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para demo de sistema académico ]</span>
+                <div class="project-image">
+                    <img src="https://github.com/allamal/fotos/blob/main/gestion-aca.gif?raw=true" alt="Demo Sistema de Gestión Académica">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -373,6 +378,23 @@
                     <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana</h3>
                     <p class="project-description">Aplicación web de Learning Analytics orientada a la retención estudiantil preventiva en entornos virtuales. Procesa automáticamente reportes de avance y actividad para clasificar comisiones bajo algoritmos dinámicos de riesgo por inactividad, integrando un módulo de gestión CRM para bitácoras, alertas automatizadas y control institucional longitudinal.</p>
                     <button onclick="openModal('modal-sistema')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </article>
+
+            <!-- Tarjeta 6: CONTROL Y EVALUACIÓN DE EXÁMENES SINCRÓNICOS (Categoría: tech) -->
+            <article class="project-card" data-category="tech">
+                <div class="project-image">
+                    <img src="https://github.com/allamal/fotos/blob/main/app-examen.gif?raw=true" alt="Demo Sistema de Exámenes Sincrónicos">
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Apps Script WebApp</span>
+                        <span class="tag">Quinttos API</span>
+                        <span class="tag">UI/UX Interactiva</span>
+                    </div>
+                    <h3 class="project-title">📝 Evaluaciones sincrónicas – Ecosistema de exámenes</h3>
+                    <p class="project-description">Aplicación web avanzada para la gestión, auditoría y carga automatizada de calificaciones de exámenes finales sincrónicos. Unifica la distribución dinámica de actas digitales seguras, controla los tiempos legales de tolerancia de conexión, asocia links únicos de videoconferencia y automatiza la persistencia de datos contables y académicos sin infraestructura de servidores externos.</p>
+                    <button onclick="openModal('modal-examenes')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </article>
 
@@ -435,6 +457,38 @@
 
             <h4 style="color: #4ade80;">📈 El valor de negocio (El resultado)</h4>
             <p style="color: #cbd5e1;">Permite medir de manera real la tasa de efectividad de las intervenciones del equipo de retención, optimiza las horas de trabajo humano dirigiendo los esfuerzos hacia los estudiantes recuperables y reduce drásticamente las tasas de abandono institucional mediante el uso inteligente y pragmático de los datos.</p>
+        </div>
+    </div>
+
+    <!-- POPUP 3: MODAL SISTEMA DE EVALUACIONES SINCRÓNICAS -->
+    <div id="modal-examenes" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-examenes')">
+        <div class="modal-wrapper">
+            <button class="modal-close" onclick="closeModal('modal-examenes')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="font-size: 1.8rem; margin-bottom: 10px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">📝 Evaluaciones sincrónicas – Ecosistema Integral de Exámenes Finales</h2>
+            
+            <h4>💡 El problema</h4>
+            <p>La coordinación masiva de mesas examinadoras sincrónicas (finales virtuales) solía ser un caos logístico propicio para errores humanos: envío manual de enlaces de videoconferencia cruzados, planillas de notas internas vulnerables, retrasos en la validación contable de cuotas/documentación de alumnos y procesos de carga asincrónicos lentos en el sistema central.</p>
+            
+            <h4>🚀 La solución</h4>
+            <p>Se desarrolló una WebApp robusta en Google Apps Script que actúa como un centro unificado de control para el ciclo completo de exámenes de carreras a distancia. El sistema automatiza de extremo a extremo la generación y comunicación de grillas de fechas, la vinculación segura de salas virtuales de Meet por mesa y el armado de actas dinámicas con filtros de bloqueo en tiempo real basados en el estado administrativo del alumno. Además, provee al docente de una interfaz simplificada donde asienta la calificación, sincroniza la información al instante con los sistemas centrales (Quinttos) y despacha las liquidaciones profesionales correspondientes de forma automática y transparente.</p>
+            
+            <h4>🌟 Características clave</h4>
+            <ul>
+                <li><strong>Filtros Administrativos Automáticos:</strong> Bloquea o destaca dinámicamente en el acta interna a los alumnos con restricciones de documentación o cuotas pendientes antes de la evaluación.</li>
+                <li><strong>Comunicación Segmentada y Automatizada:</strong> Despacha por correo los enlaces de Meet, listados de inscriptos personalizados y recordatorios con plantillas estructuradas tanto para docentes como para estudiantes.</li>
+                <li><strong>Módulo Contable Integrado:</strong> Automatiza el cálculo y la asignación de honorarios docentes por mesa evaluadora con datos cruzados de administración institucional en un solo clic.</li>
+                <li><strong>Auditoría de Tiempos Legales:</strong> Control y registro estricto en la base de datos de los tiempos de grabación de cada encuentro y las tolerancias legales de conexión para resguardo institucional.</li>
+            </ul>
+            
+            <h4>🛠️ Stack tecnológico</h4>
+            <ul>
+                <li><strong>Arquitectura del Servidor:</strong> Google Apps Script (WebApp) operando bajo lógica de inyección dinámica de HTML en plantillas (*HTML Templates*).</li>
+                <li><strong>UI/UX Frontend:</strong> JavaScript Nativo (Manipulación avanzada de DOM) integrado con componentes responsivos de Bootstrap 5 y FontAwesome para control estético.</li>
+                <li><strong>Integraciones API Core:</strong> Google Calendar API (Calendarización y control de salas Meet), Gmail API (Estructura automatizada de mails tipo), Drive API (Persistencia documental e historial de actas fijas).</li>
+            </ul>
+
+            <h4 style="color: #4ade80;">📈 Impacto Operativo</h4>
+            <p style="color: #cbd5e1;">Elimina el 100% de la fricción administrativa en periodos críticos de exámenes. Centraliza los datos macro para auditoría académica inmediata y transforma un flujo operativo manual que tomaba días enteros de trabajo humano coordinado en un proceso sistémico automatizado, seguro y sin fallas.</p>
         </div>
     </div>
 
