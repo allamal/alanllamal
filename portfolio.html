@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Alan Llamal</title>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -177,25 +179,30 @@
 
     <div class="container">
         
+        <!-- Botón Volver -->
         <nav class="nav-bar">
             <a href="https://allamal.github.io/Inicio/" class="btn-back">
                 <i class="fa-solid fa-arrow-left"></i> Volver al inicio
             </a>
         </nav>
 
+        <!-- Cabecera -->
         <header style="margin-bottom: 40px;">
             <h1 class="page-title">Portfolio de proyectos</h1>
             <p class="page-subtitle">Soluciones operativas y experiencias de aprendizaje diseñadas para potenciar la gestión académica.</p>
         </header>
 
+        <!-- BOTONES DE FILTRADO (TABS) -->
         <div style="display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
             <button class="filter-btn active" onclick="filterProjects('all', this)" style="padding: 12px 24px; background: var(--primary-color); color: #0f172a; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Todos los proyectos</button>
             <button class="filter-btn" onclick="filterProjects('learning', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Proyectos e-learning</button>
             <button class="filter-btn" onclick="filterProjects('tech', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Diseño de soluciones operativas</button>
         </div>
 
+        <!-- GRILLA DE PROYECTOS -->
         <div class="portfolio-grid">
             
+            <!-- Tarjeta 1: CURSO STORYLINE (Categoría: learning) -->
             <article class="project-card" data-category="learning">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                     <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de curso en Articulate Storyline" style="width: 100%; height: 100%; object-fit: cover;">
@@ -211,6 +218,7 @@
                 </div>
             </article>
 
+            <!-- Tarjeta 2: CURSO RISE (Categoría: learning) -->
             <article class="project-card" data-category="learning">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
@@ -229,6 +237,7 @@
                 </div>
             </article>
 
+            <!-- Tarjeta 3: CLASES EN HTML (Categoría: learning) -->
             <article class="project-card" data-category="learning">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
@@ -247,6 +256,7 @@
                 </div>
             </article>
 
+            <!-- Tarjeta 4: DASHBOARD INSCRIPCIONES (Categoría: tech) -->
             <article class="project-card" data-category="tech">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1e293b;">
                     <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para demo de dashboard ]</span>
@@ -258,23 +268,12 @@
                         <span class="tag">Chart.js</span>
                     </div>
                     <h3 class="project-title">📊 Dashboard inscripciones · Data analytics</h3>
-                    
-                    <h5 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">💡 El problema</h5>
-                    <p class="project-description" style="margin-top: 0;">Gestionar convocatorias a nivel nacional con miles de inscripciones y planillas ilegibles, métricas de conversión inexistentes, embudos de inscripción rotos y total ceguera respecto al impacto demográfico en tiempo real.</p>
-                    
-                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🚀 La solución</h5>
-                    <p class="project-description" style="margin-top: 0;">Es una plataforma de Business Intelligence a medida que transforma registros planos de Google Sheets en un centro de comando interactivo y de alta fidelidad visual. Diseñado específicamente para el monitoreo estratégico de proyectos sociales y educativos, este sistema permite auditar el pulso real de la convocatoria. Resuelve la falta de visibilidad automatizando el cálculo de tasas de conversión por canal, identificando brechas geográficas en tiempo real y segmentando audiencias de manera cruzada con un solo clic.</p>
-                    
-                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🌟 Características clave & storytelling visual</h5>
-                    <p class="project-description" style="margin-top: 0;">Embudo de conversión realizado por canal; ranking total de provincias optimizado; filtros cruzados interactivos (Cross-Filtering); termómetro y análisis histórico (un módulo comparativo avanzado con cálculo de brechas que mide el rendimiento de la campaña actual frente al año anterior para asegurar el cumplimiento del objetivo global); acceso seguro y optimizado.</p>
-                    
-                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🛠️ Stack tecnológico</h5>
-                    <p class="project-description" style="margin-top: 0;"><strong>Frontend:</strong> HTML5, CSS3 (Bootstrap 5 para un diseño responsivo y moderno), JavaScript moderno (ES6+).<br>
-                    <strong>Visualización de datos:</strong> Chart.js, configurado a bajo nivel para renderizados dinámicos, control de aspect-ratio adaptable y manejo de eventos onClick interactivos.<br>
-                    <strong>Backend & base de datos:</strong> Google Apps Script (GAS), actuando como el motor del servidor, consumiendo y procesando datos de Google Sheets en milisegundos a través de ejecuciones asíncronas (google.script.run).</p>
+                    <p class="project-description">Plataforma de Business Intelligence a medida que transforma registros planos de Google Sheets en un centro de comando interactivo de alta fidelidad visual. Automatiza el cálculo de tasas de conversión por canal, identifica brechas demográficas en tiempo real y segmenta audiencias cruzadas con un solo clic para optimizar el monitoreo estratégico de convocatorias nacionales.</p>
+                    <a href="https://github.com/allamal/Inicio" target="_blank" rel="noopener noreferrer" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
+            <!-- Tarjeta 5: GESTIÓN ACADÉMICA & LEARNING ANALYTICS (Categoría: tech) -->
             <article class="project-card" data-category="tech">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1e293b;">
                     <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para demo de sistema académico ]</span>
@@ -285,29 +284,9 @@
                         <span class="tag">CRM & retention</span>
                         <span class="tag">Drive & Sheets API</span>
                     </div>
-                    <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana y Learning analytics</h3>
-                    
-                    <h5 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">💡 El problema</h5>
-                    <p class="project-description" style="margin-top: 0;">Los reportes tradicionales de los LMS entregan "fotos" estáticas del pasado, no flujos dinámicos del presente.</p>
-                    
-                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🚀 La solución</h5>
-                    <p class="project-description" style="margin-top: 0;">Es una plataforma web de Learning Analytics y retención estudiantil que transforma datos crudos de plataformas educativas en estrategias preventivas de intervención en tiempo real. A través de un ecosistema visual e intuitivo, la aplicación procesa automáticamente los reportes de actividad y avance para segmentar a los estudiantes según su nivel de riesgo. El sistema no solo calcula la inactividad cronológica, sino que evalúa el progreso académico relativo comparando a cada alumno con el ritmo real de su comisión, permitiendo a los tutores anticiparse a la deserción mediante un módulo CRM integrado para registrar bitácoras, gestionar alertas sistémicas y automatizar el seguimiento.</p>
-                    
-                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🌟 Características clave</h5>
-                    <p class="project-description" style="margin-top: 0;"><strong>Panel de seguimiento inteligente:</strong> Filtros dinámicos por carrera, comisiones, materias y buscador de alumnos por tokens que prioriza coincidencias exactas de identidad.<br>
-                    <strong>Algoritmo de alerta temprana:</strong> Clasificación automatizada en semáforos basada en reglas de negocio customizables de inactividad e ingresos nulos.<br>
-                    <strong>Detección de riesgo académico:</strong> Registro centralizado de gestiones; módulo Business Intelligence (datos macro) con matriz de análisis de salud institucional que permite comparar de manera longitudinal la evolución de la retención entre múltiples hitos de control.</p>
-                    
-                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🛠️ Tecnología y arquitectura</h5>
-                    <p class="project-description" style="margin-top: 0;">Diseñado bajo un enfoque de costo cero de infraestructura ($0) y máxima eficiencia operativa, el proyecto se apoya por completo en soluciones Cloud corporativas:<br><br>
-                    <strong>Frontend:</strong> HTML5, CSS3, JavaScript avanzado (ES6+) y Bootstrap 5.3 para una interfaz responsiva y fluida.<br>
-                    <strong>Backend:</strong> Google Apps Script (GAS) como entorno de ejecución del lado del servidor.<br>
-                    <strong>Persistencia de datos:</strong> Google Sheets configurado como base de datos de alta velocidad mediante el uso de colecciones indexadas (Map en JS) para evitar cuellos de botella en consultas masivas.<br>
-                    <strong>Integración de archivos:</strong> Google Drive API para la Sincronización y consolidación automatizada de reportes Excel externos en lotes.<br>
-                    <strong>Seguridad:</strong> Autenticación nativa e inicio de sesión seguro mediante el protocolo OAuth2 de Google.</p>
-
-                    <h5 style="color: #4ade80; margin: 10px 0 2px 0; font-size: 0.95rem;">📈 El valor de negocio (El resultado)</h5>
-                    <p class="project-description" style="margin-top: 0; color: #cbd5e1;">Permite medir de manera real la tasa de efectividad de las intervenciones del equipo de retención, optimiza las horas de trabajo humano dirigiendo los esfuerzos hacia los estudiantes recuperables y reduce drásticamente las tasas de abandono institucional mediante el uso inteligente y pragmático de los datos.</p>
+                    <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana</h3>
+                    <p class="project-description">Aplicación web de Learning Analytics orientada a la retención estudiantil preventiva en entornos virtuales. Procesa automáticamente reportes de avance y actividad para clasificar comisiones bajo algoritmos dinámicos de riesgo por inactividad, integrando un módulo de gestión CRM para bitácoras, alertas automatizadas y control institucional longitudinal.</p>
+                    <a href="https://github.com/allamal/Inicio" target="_blank" rel="noopener noreferrer" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
@@ -315,6 +294,7 @@
 
     </div>
 
+    <!-- SCRIPT DE FILTRADO INTERACTIVO -->
     <script>
         function filterProjects(category, clickedButton) {
             const cards = document.querySelectorAll('.project-card');
