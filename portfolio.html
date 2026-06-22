@@ -1,7 +1,216 @@
-<!-- CONTENEDOR DE PROYECTOS (GRID) -->
-        <div class="projects-grid">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Alan Llamal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-            <!-- Tarjeta 1: CURSO EN ARTICULATE RISE (Categoría: learning) -->
+    <style>
+        :root {
+            --bg-color: #0b1121;
+            --surface-color: #151e32;
+            --primary-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        .nav-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 50px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary-color);
+            color: #0f172a;
+        }
+
+        /* --- PORTFOLIO HEADER --- */
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        /* --- GRILLA DE PROYECTOS --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.1);
+        }
+
+        .project-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            margin-top: auto;
+        }
+
+        .project-link:hover {
+            color: #7dd3fc;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <nav class="nav-bar">
+            <a href="https://allamal.github.io/Inicio/" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+            </a>
+        </nav>
+
+        <header style="margin-bottom: 40px;">
+            <h1 class="page-title">Portfolio de proyectos</h1>
+            <p class="page-subtitle">Soluciones operativas y experiencias de aprendizaje diseñadas para potenciar la gestión académica.</p>
+        </header>
+
+        <div style="display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+            <button class="filter-btn active" onclick="filterProjects('all', this)" style="padding: 12px 24px; background: var(--primary-color); color: #0f172a; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Todos los proyectos</button>
+            <button class="filter-btn" onclick="filterProjects('learning', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Proyectos e-learning</button>
+            <button class="filter-btn" onclick="filterProjects('tech', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Diseño de soluciones operativas</button>
+        </div>
+
+        <div class="portfolio-grid">
+            
+            <article class="project-card" data-category="learning">
+                <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de curso en Articulate Storyline" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Storyline</span>
+                        <span class="tag">Diseño instruccional</span>
+                    </div>
+                    <h3 class="project-title">Curso en Articulate Storyline</h3>
+                    <p class="project-description">Transformación de contenidos teóricos complejos en un trayecto interactivo autogestionado. Desarrollo de navegación personalizada, dinámicas gamificadas y recursos visuales enfocados en maximizar la retención y el engagement del estudiante.</p>
+                    <a href="https://github.com/allamal/fotos/blob/main/Screen-Recording%20(1).gif" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
             <article class="project-card" data-category="learning">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
@@ -11,16 +220,15 @@
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Articulate Rise 360</span>
-                        <span class="tag">E-learning Design</span>
+                        <span class="tag">Rise 360</span>
+                        <span class="tag">E-learning design</span>
                     </div>
-                    <h3 class="project-title">Curso en Articulate RISE</h3>
+                    <h3 class="project-title">Curso en Articulate Rise</h3>
                     <p class="project-description">Desarrollo de módulos e-learning responsivos y navegables de alto impacto. Estructuración pedagógica de contenidos complejos mediante lecciones interactivas, componentes multimedia integrados y evaluaciones formativas orientadas al autoaprendizaje.</p>
                     <a href="https://github.com/allamal/fotos/blob/18bc4f8a94b65dd01fe109889a2508fe3dfcf5b3/screen-recording_Te9Al5oG.mp4" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
-            <!-- Tarjeta 2: DISEÑO DE CLASES EN HTML (Categoría: learning) -->
             <article class="project-card" data-category="learning">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
@@ -39,88 +247,101 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 3: DASHBOARD INSCRIPCIONES (Categoría: development) -->
-            <article class="project-card" data-category="development">
+            <article class="project-card" data-category="tech">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1e293b;">
-                    <!-- TODO: Reemplazar este span por la etiqueta video cuando tengas el archivo en tu repo:
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
-                        <source src="TU_URL_RAW_AQUÍ.mp4" type="video/mp4">
-                    </video> 
-                    -->
-                    <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para Demo de Dashboard ]</span>
+                    <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para demo de dashboard ]</span>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
                         <span class="tag">Google Apps Script</span>
-                        <span class="tag">Data Analytics</span>
+                        <span class="tag">Data analytics</span>
                         <span class="tag">Chart.js</span>
                     </div>
-                    <h3 class="project-title">📊 Dashboard inscripciones · Data Analytics</h3>
+                    <h3 class="project-title">📊 Dashboard inscripciones · Data analytics</h3>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">💡 El problema</h4>
+                    <h5 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">💡 El problema</h5>
                     <p class="project-description" style="margin-top: 0;">Gestionar convocatorias a nivel nacional con miles de inscripciones y planillas ilegibles, métricas de conversión inexistentes, embudos de inscripción rotos y total ceguera respecto al impacto demográfico en tiempo real.</p>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">🚀 La solución</h4>
+                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🚀 La solución</h5>
                     <p class="project-description" style="margin-top: 0;">Es una plataforma de Business Intelligence a medida que transforma registros planos de Google Sheets en un centro de comando interactivo y de alta fidelidad visual. Diseñado específicamente para el monitoreo estratégico de proyectos sociales y educativos, este sistema permite auditar el pulso real de la convocatoria. Resuelve la falta de visibilidad automatizando el cálculo de tasas de conversión por canal, identificando brechas geográficas en tiempo real y segmentando audiencias de manera cruzada con un solo clic.</p>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">🌟 Características clave & Storytelling visual</h4>
+                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🌟 Características clave & storytelling visual</h5>
                     <p class="project-description" style="margin-top: 0;">Embudo de conversión realizado por canal; ranking total de provincias optimizado; filtros cruzados interactivos (Cross-Filtering); termómetro y análisis histórico (un módulo comparativo avanzado con cálculo de brechas que mide el rendimiento de la campaña actual frente al año anterior para asegurar el cumplimiento del objetivo global); acceso seguro y optimizado.</p>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">🛠️ Stack tecnológico</h4>
-                    <p class="project-description" style="margin-top: 0;"><strong>Frontend:</strong> HTML5, CSS3 (Bootstrap 5 para un diseño responsivo y moderno), JavaScript Moderno (ES6+).<br>
+                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🛠️ Stack tecnológico</h5>
+                    <p class="project-description" style="margin-top: 0;"><strong>Frontend:</strong> HTML5, CSS3 (Bootstrap 5 para un diseño responsivo y moderno), JavaScript moderno (ES6+).<br>
                     <strong>Visualización de datos:</strong> Chart.js, configurado a bajo nivel para renderizados dinámicos, control de aspect-ratio adaptable y manejo de eventos onClick interactivos.<br>
-                    <strong>Backend & Base de datos:</strong> Google Apps Script (GAS), actuando como el motor del servidor, consumiendo y procesando datos de Google Sheets en milisegundos a través de ejecuciones asíncronas (google.script.run).</p>
-                    
-                    <!-- TODO: Vincular el permalink cuando subas el video de demostración
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
-                    -->
+                    <strong>Backend & base de datos:</strong> Google Apps Script (GAS), actuando como el motor del servidor, consumiendo y procesando datos de Google Sheets en milisegundos a través de ejecuciones asíncronas (google.script.run).</p>
                 </div>
             </article>
 
-            <!-- Tarjeta 4: GESTIÓN ACADÉMICA & LEARNING ANALYTICS (Categoría: development) -->
-            <article class="project-card" data-category="development">
+            <article class="project-card" data-category="tech">
                 <div class="project-image" style="background: #0f172a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1e293b;">
-                    <!-- TODO: Reemplazar este span por la etiqueta video cuando tengas el archivo en tu repo:
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
-                        <source src="TU_URL_RAW_AQUÍ.mp4" type="video/mp4">
-                    </video> 
-                    -->
-                    <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para Demo de Sistema Académico ]</span>
+                    <span style="color: #64748b; font-size: 0.9rem; font-family: monospace;">[ Espacio reservado para demo de sistema académico ]</span>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Learning Analytics</span>
-                        <span class="tag">CRM & Retention</span>
+                        <span class="tag">Learning analytics</span>
+                        <span class="tag">CRM & retention</span>
                         <span class="tag">Drive & Sheets API</span>
                     </div>
-                    <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana y Learning Analytics</h3>
+                    <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana y Learning analytics</h3>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">💡 El problema</h4>
+                    <h5 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">💡 El problema</h5>
                     <p class="project-description" style="margin-top: 0;">Los reportes tradicionales de los LMS entregan "fotos" estáticas del pasado, no flujos dinámicos del presente.</p>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">🚀 La solución</h4>
-                    <p class="project-description" style="margin-top: 0;">Es una plataforma web de Learning Analytics y retención estudiantil que transforma datos crudos de plataformas educativas en estrategias preventivas de intervention en tiempo real. A través de un ecosistema visual e intuitivo, la aplicación procesa automáticamente los reportes de actividad y avance para segmentar a los estudiantes según su nivel de riesgo. El sistema no solo calcula la inactividad cronológica, sino que evalúa el progreso académico relativo comparando a cada alumno con el ritmo real de su comisión, permitiendo a los tutores anticiparse a la deserción mediante un módulo CRM integrado para registrar bitácoras, gestionar alertas sistémicas y automatizar el seguimiento.</p>
+                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🚀 La solución</h5>
+                    <p class="project-description" style="margin-top: 0;">Es una plataforma web de Learning Analytics y retención estudiantil que transforma datos crudos de plataformas educativas en estrategias preventivas de intervención en tiempo real. A través de un ecosistema visual e intuitivo, la aplicación procesa automáticamente los reportes de actividad y avance para segmentar a los estudiantes según su nivel de riesgo. El sistema no solo calcula la inactividad cronológica, sino que evalúa el progreso académico relativo comparando a cada alumno con el ritmo real de su comisión, permitiendo a los tutores anticiparse a la deserción mediante un módulo CRM integrado para registrar bitácoras, gestionar alertas sistémicas y automatizar el seguimiento.</p>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">🌟 Características clave</h4>
-                    <p class="project-description" style="margin-top: 0;"><strong>Panel de Seguimiento Inteligente:</strong> Filtros dinámicos por carrera, comisiones, materias y buscador de alumnos por tokens que prioriza coincidencias exactas de identidad.<br>
+                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🌟 Características clave</h5>
+                    <p class="project-description" style="margin-top: 0;"><strong>Panel de seguimiento inteligente:</strong> Filtros dinámicos por carrera, comisiones, materias y buscador de alumnos por tokens que prioriza coincidencias exactas de identidad.<br>
                     <strong>Algoritmo de alerta temprana:</strong> Clasificación automatizada en semáforos basada en reglas de negocio customizables de inactividad e ingresos nulos.<br>
-                    <strong>Detección de riesgo académico:</strong> Registro centralizado de gestiones; Módulo Business Intelligence (Datos macro) con matriz de análisis de salud institucional que permite comparar de manera longitudinal la evolución de la retención entre múltiples hitos de control.</p>
+                    <strong>Detección de riesgo académico:</strong> Registro centralizado de gestiones; módulo Business Intelligence (datos macro) con matriz de análisis de salud institucional que permite comparar de manera longitudinal la evolución de la retención entre múltiples hitos de control.</p>
                     
-                    <h4 style="color: #f1f5f9; margin: 12px 0 2px 0; font-size: 0.95rem;">🛠️ Tecnología y Arquitectura</h4>
+                    <h5 style="color: #f1f5f9; margin: 10px 0 2px 0; font-size: 0.95rem;">🛠️ Tecnología y arquitectura</h5>
                     <p class="project-description" style="margin-top: 0;">Diseñado bajo un enfoque de costo cero de infraestructura ($0) y máxima eficiencia operativa, el proyecto se apoya por completo en soluciones Cloud corporativas:<br><br>
-                    <strong>Frontend:</strong> HTML5, CSS3, JavaScript Avanzado (ES6+) y Bootstrap 5.3 para una interfaz responsiva y fluida.<br>
+                    <strong>Frontend:</strong> HTML5, CSS3, JavaScript avanzado (ES6+) y Bootstrap 5.3 para una interfaz responsiva y fluida.<br>
                     <strong>Backend:</strong> Google Apps Script (GAS) como entorno de ejecución del lado del servidor.<br>
-                    <strong>Persistencia de Datos:</strong> Google Sheets configurado como base de datos de alta velocidad mediante el uso de colecciones indexadas (Map en JS) para evitar cuellos de botella en consultas masivas.<br>
-                    <strong>Integración de Archivos:</strong> Google Drive API para la sincronización y consolidación automatizada de reportes Excel externos en lotes.<br>
+                    <strong>Persistencia de datos:</strong> Google Sheets configurado como base de datos de alta velocidad mediante el uso de colecciones indexadas (Map en JS) para evitar cuellos de botella en consultas masivas.<br>
+                    <strong>Integración de archivos:</strong> Google Drive API para la Sincronización y consolidación automatizada de reportes Excel externos en lotes.<br>
                     <strong>Seguridad:</strong> Autenticación nativa e inicio de sesión seguro mediante el protocolo OAuth2 de Google.</p>
 
-                    <h4 style="color: #4ade80; margin: 12px 0 2px 0; font-size: 0.95rem;">📈 El valor de negocio (El resultado)</h4>
+                    <h5 style="color: #4ade80; margin: 10px 0 2px 0; font-size: 0.95rem;">📈 El valor de negocio (El resultado)</h5>
                     <p class="project-description" style="margin-top: 0; color: #cbd5e1;">Permite medir de manera real la tasa de efectividad de las intervenciones del equipo de retención, optimiza las horas de trabajo humano dirigiendo los esfuerzos hacia los estudiantes recuperables y reduce drásticamente las tasas de abandono institucional mediante el uso inteligente y pragmático de los datos.</p>
-                    
-                    <!-- TODO: Vincular el permalink cuando subas el video de demostración
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
-                    -->
                 </div>
             </article>
 
         </div>
+
+    </div>
+
+    <script>
+        function filterProjects(category, clickedButton) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Restablecer estilos de todos los botones
+            buttons.forEach(btn => {
+                btn.style.background = 'var(--surface-color)';
+                btn.style.color = 'var(--text-main)';
+                btn.style.border = '1px solid rgba(255,255,255,0.1)';
+            });
+            
+            // Aplicar estilos activos al botón seleccionado
+            clickedButton.style.background = 'var(--primary-color)';
+            clickedButton.style.color = '#0f172a';
+            clickedButton.style.border = 'none';
+
+            // Filtrar las tarjetas de la grilla
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
