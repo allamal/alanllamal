@@ -15,12 +15,14 @@
 
     <style>
         :root {
-            --bg-color: #0b1121;
-            --surface-color: #151e32;
+            --bg-color: #070a13;
+            --surface-color: rgba(21, 30, 50, 0.7);
+            --surface-border: rgba(255, 255, 255, 0.08);
             --primary-color: #38bdf8;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --blur-effect: blur(12px);
         }
 
         * {
@@ -32,9 +34,15 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
+            /* Propuesta 4: Gradiente radial profundo de fondo */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(30, 58, 138, 0.2) 0%, transparent 50%);
+            background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
         .container {
@@ -55,18 +63,21 @@
             align-items: center;
             gap: 10px;
             padding: 10px 20px;
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.03);
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
-            border: 1px solid var(--primary-color);
+            border: 1px solid var(--surface-border);
             border-radius: 50px;
-            transition: all 0.3s ease;
+            backdrop-filter: var(--blur-effect);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-back:hover {
             background-color: var(--primary-color);
-            color: #0f172a;
+            color: #070a13;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
 
         /* --- PORTFOLIO HEADER --- */
@@ -77,45 +88,104 @@
             background: linear-gradient(to right, #ffffff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
         .page-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 50px;
+            max-width: 700px;
         }
 
-        /* --- GRILLA DE PROYECTOS --- */
+        /* --- Propuesta 3: CONTROL DE FILTROS MINIMALISTAS --- */
+        .filter-container {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 4px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* --- Propuesta 3 y 4: GRILLA Y TARJETAS GLASSMORPHISM --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
         }
 
         .project-card {
-            background-color: var(--surface-color);
+            background: var(--surface-color);
             border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--surface-border);
+            backdrop-filter: var(--blur-effect);
             overflow: hidden;
-            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
+            /* Animación suave para el filtrado */
+            opacity: 1;
+            transform: scale(1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.3s ease, 
+                        box-shadow 0.3s ease,
+                        opacity 0.3s ease;
+        }
+
+        .project-card.hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-color);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.05);
         }
 
         .project-image {
             width: 100%;
-            height: 220px;
-            background-color: #0f172a;
+            height: 210px;
+            background-color: #090d16;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border-bottom: 1px solid var(--surface-border);
         }
 
         .project-image img, .project-image video {
@@ -125,7 +195,7 @@
         }
 
         .project-content {
-            padding: 30px;
+            padding: 25px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -133,33 +203,39 @@
 
         .project-tags {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
 
         .tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             padding: 4px 10px;
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.08);
             color: var(--primary-color);
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            border: 1px solid rgba(56, 189, 248, 0.15);
         }
 
         .project-title {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
             color: var(--text-main);
+            font-weight: 600;
         }
 
         .project-description {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 25px;
             flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .project-link {
@@ -169,13 +245,14 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.2s ease;
             margin-top: auto;
             background: none;
             border: none;
             cursor: pointer;
             text-align: left;
+            width: fit-content;
         }
 
         .project-link:hover {
@@ -183,23 +260,21 @@
             gap: 12px;
         }
 
-        /* --- MODALES / POPUPS --- */
+        /* --- Propuesta 2: MODAL LATERAL TECH (SLIDING CASE STUDY) --- */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
+            background-color: rgba(7, 10, 19, 0.6);
+            backdrop-filter: blur(4px);
             display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-content: flex-end; /* Lo alinea a la derecha */
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 20px;
+            transition: opacity 0.4s ease;
         }
 
         .modal-overlay.active {
@@ -208,69 +283,99 @@
         }
 
         .modal-wrapper {
-            background-color: #111827;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            max-width: 750px;
+            background-color: #0c111d;
+            border-left: 1px solid var(--surface-border);
             width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 40px;
+            max-width: 600px; /* Tamaño de panel de control lateral */
+            height: 100%;
+            padding: 45px 40px;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+            transform: translateX(100%); /* Entra desde afuera a la derecha */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
         }
 
         .modal-overlay.active .modal-wrapper {
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
         .modal-close {
             position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--surface-border);
             color: var(--text-muted);
-            font-size: 1.5rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .modal-close:hover {
             color: var(--primary-color);
+            border-color: var(--primary-color);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .modal-wrapper h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 15px;
+            color: var(--text-main);
         }
 
         .modal-wrapper h4 {
             color: var(--primary-color);
-            margin: 20px 0 8px 0;
-            font-size: 1.1rem;
+            margin: 25px 0 10px 0;
+            font-size: 0.95rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .modal-wrapper p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 12px;
+            line-height: 1.7;
+            margin-bottom: 15px;
         }
 
         .modal-wrapper ul {
             margin-left: 20px;
             color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 15px;
         }
 
         .modal-wrapper li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            line-height: 1.6;
         }
-    </script>
+
+        .modal-wrapper strong {
+            color: rgba(255,255,255,0.9);
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- Botón Volver -->
+        <!-- Navegación -->
         <nav class="nav-bar">
             <a href="https://allamal.github.io/Inicio/" class="btn-back">
                 <i class="fa-solid fa-arrow-left"></i> Volver al inicio
@@ -278,25 +383,25 @@
         </nav>
 
         <!-- Cabecera -->
-        <header style="margin-bottom: 40px;">
+        <header style="margin-bottom: 20px;">
             <h1 class="page-title">Portfolio de proyectos</h1>
-            <p class="page-subtitle">Soluciones operativas y experiencias de aprendizaje diseñadas para potenciar la gestión académica.</p>
+            <p class="page-subtitle">Soluciones operativas eficientes y recursos e-learning de alto impacto diseñados para optimizar entornos institucionales.</p>
         </header>
 
-        <!-- BOTONES DE FILTRADO (TABS) -->
-        <div style="display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
-            <button class="filter-btn active" onclick="filterProjects('all', this)" style="padding: 12px 24px; background: var(--primary-color); color: #0f172a; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Todos los proyectos</button>
-            <button class="filter-btn" onclick="filterProjects('learning', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Proyectos e-learning</button>
-            <button class="filter-btn" onclick="filterProjects('tech', this)" style="padding: 12px 24px; background: var(--surface-color); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Diseño de soluciones operativas</button>
+        <!-- Propuesta 3: MENÚ DE FILTRADO MINIMALISTA -->
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterProjects('all', this)">Todos los proyectos</button>
+            <button class="filter-btn" onclick="filterProjects('learning', this)">Proyectos e-learning</button>
+            <button class="filter-btn" onclick="filterProjects('tech', this)">Soluciones operativas</button>
         </div>
 
-        <!-- GRILLA DE PROYECTOS -->
-        <div class="portfolio-grid">
+        <!-- GRILLA DE PROYECTOS (Corregida la visibilidad por defecto) -->
+        <div class="portfolio-grid" id="main-grid">
             
-            <!-- Tarjeta 1: CURSO STORYLINE (Categoría: learning) -->
+            <!-- Tarjeta 1: CURSO STORYLINE -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Demo de curso en Articulate Storyline">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Curso en Articulate Storyline">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -309,12 +414,11 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 2: CURSO RISE (Categoría: learning) -->
+            <!-- Tarjeta 2: CURSO RISE -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
                     <video autoplay loop muted playsinline>
                         <source src="https://allamal.github.io/Inicio/screen-recording_Te9Al5oG.mp4" type="video/mp4">
-                        Tu navegador no soporta el formato de video.
                     </video>
                 </div>
                 <div class="project-content">
@@ -328,12 +432,11 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 3: CLASES EN HTML (Categoría: learning) -->
+            <!-- Tarjeta 3: CLASES EN HTML -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
                     <video autoplay loop muted playsinline>
                         <source src="https://allamal.github.io/Inicio/html-lms_2SmtbJN6.mp4" type="video/mp4">
-                        Tu navegador no soporta el formato de video.
                     </video>
                 </div>
                 <div class="project-content">
@@ -347,16 +450,15 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 4: APP DE GAMIFICACIÓN EN HTML (Categoría: learning) -->
+            <!-- Tarjeta 4: APP DE GAMIFICACIÓN EN HTML -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" alt="Demo App de gamificación en HTML">
+                    <img src="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" alt="App de gamificación en HTML">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
                         <span class="tag">HTML5 / Vanilla JS</span>
                         <span class="tag">Gamificación</span>
-                        <span class="tag">Diseño instruccional</span>
                     </div>
                     <h3 class="project-title">App de gamificación en HTML</h3>
                     <p class="project-description">El desarrollo convierte conceptos semiológicos complejos en un entorno de laboratorio seguro donde los estudiantes configuran titulares mediante variables sintácticas modulares. A través de un motor basado en JavaScript nativo, la interfaz evalúa algorítmicamente las decisiones del usuario y muestra en tiempo real un termómetro visual con la intensidad de la carga valorativa. Al finalizar las rondas temáticas, el sistema calcula un perfil de línea editorial personalizado y ofrece un cierre pedagógico que conecta la experiencia lúdica con la teoría de Roland Barthes. Es un recurso educativo autónomo, responsivo y de alto impacto didáctico, ideal para integrarse de forma nativa en cualquier sistema de gestión de aprendizaje.</p>
@@ -364,15 +466,15 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 5: DASHBOARD INSCRIPCIONES (Categoría: tech) -->
+            <!-- Tarjeta 5: DASHBOARD INSCRIPCIONES -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/DASH%20BTF.gif" alt="Demo Dashboard Convocatorias">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/DASH%20BTF.gif" alt="Dashboard Convocatorias">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Google Apps Script</span>
-                        <span class="tag">Data analytics</span>
+                        <span class="tag">Apps Script</span>
+                        <span class="tag">BI & Analytics</span>
                         <span class="tag">Chart.js</span>
                     </div>
                     <h3 class="project-title">📊 Dashboard inscripciones · Data analytics</h3>
@@ -381,16 +483,15 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 6: GESTIÓN ACADÉMICA & LEARNING ANALYTICS (Categoría: tech) -->
+            <!-- Tarjeta 6: GESTIÓN ACADÉMICA -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/gestion-aca.gif?raw=true" alt="Demo Sistema de Gestión Académica">
+                    <img src="https://github.com/allamal/fotos/blob/main/gestion-aca.gif?raw=true" alt="Sistema de Gestión Académica">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
                         <span class="tag">Learning analytics</span>
-                        <span class="tag">CRM & retention</span>
-                        <span class="tag">Drive & Sheets API</span>
+                        <span class="tag">CRM & Retention</span>
                     </div>
                     <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana</h3>
                     <p class="project-description">Aplicación web de Learning Analytics orientada a la retención estudiantil preventiva en entornos virtuales. Procesa automáticamente reportes de avance y actividad para clasificar comisiones bajo algoritmos dinámicos de riesgo por inactividad, integrando un módulo de gestión CRM para bitácoras, alertas automatizadas y control institucional longitudinal.</p>
@@ -398,19 +499,18 @@
                 </div>
             </article>
 
-            <!-- Tarjeta 7: ENTORNO SEGURO DE EXÁMENES (Categoría: tech) -->
+            <!-- Tarjeta 7: ENTORNO SEGURO EXÁMENES -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/app-examen.gif?raw=true" alt="Demo Sistema de Exámenes Sincrónicos">
+                    <img src="https://github.com/allamal/fotos/blob/main/app-examen.gif?raw=true" alt="Sistema de Exámenes">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Apps Script WebApp</span>
+                        <span class="tag">GAS WebApp</span>
                         <span class="tag">Anti-IA Security</span>
-                        <span class="tag">UI/UX Interactiva</span>
                     </div>
-                    <h3 class="project-title">📝 Entorno seguro de exámenes sincrónicos y auditoría</h3>
-                    <p class="project-description">Aplicación web blindada para la rendición de exámenes en entornos virtuales. Automatiza el control estricto del tiempo mediante un contador ininterrumpible por sesión, mitiga el fraude académico bloqueando acciones de copiado/pegado y centraliza la persistencia de respuestas con autoguardado nativo. Incluye un panel administrativo protegido por credenciales para la corrección docente inmediata.</p>
+                    <h3 class="project-title">📝 Entorno seguro de exámenes sincrónicos</h3>
+                    <p class="project-description">Aplicación web blindada para la rendición de exámenes en entornos virtuales. Automatiza el control estricto del tiempo mediante un contador ininterrumpible por sesión, mitiga el fraude académico bloqueando acciones de copiado/pegado y centraliza la persistencia de respuestas con autoguardado nativo. Panel administrativo de auditoría integrado.</p>
                     <button onclick="openModal('modal-examenes')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </article>
@@ -419,135 +519,121 @@
 
     </div>
 
-    <!-- POPUP 1: MODAL APP DE GAMIFICACIÓN -->
+    <!-- --- SECCIÓN MODALES BIEN MAQUETADOS (Propuesta 2 Lateral Panel) --- -->
+
+    <!-- MODAL 1: GAMIFICACIÓN -->
     <div id="modal-gamificacion" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-gamificacion')">
         <div class="modal-wrapper">
             <button class="modal-close" onclick="closeModal('modal-gamificacion')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="font-size: 1.8rem; margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">App de gamificación en HTML</h2>
+            <h2>App de gamificación en HTML</h2>
             <p>El desarrollo convierte conceptos semiológicos complejos en un entorno de laboratorio seguro donde los estudiantes configuran titulares mediante variables sintácticas modulares. A través de un motor basado en JavaScript nativo, la interfaz evalúa algorítmicamente las decisiones del usuario y muestra en tiempo real un termómetro visual con la intensidad de la carga valorativa. Al finalizar las rondas temáticas, el sistema calcula un perfil de línea editorial personalizado y ofrece un cierre pedagógico que conecta la experiencia lúdica con la teoría de Roland Barthes. Es un recurso educativo autónomo, responsivo y de alto impacto didáctico, ideal para integrarse de forma nativa en cualquier sistema de gestión de aprendizaje.</p>
         </div>
     </div>
 
-    <!-- POPUP 2: MODAL DASHBOARD DE INSCRIPCIONES -->
+    <!-- MODAL 2: DASHBOARD INSCRIPCIONES -->
     <div id="modal-dashboard" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-dashboard')">
         <div class="modal-wrapper">
             <button class="modal-close" onclick="closeModal('modal-dashboard')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="font-size: 1.8rem; margin-bottom: 10px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">📊 Dashboard inscripciones · Data Analytics</h2>
+            <h2>📊 Dashboard de inscripciones</h2>
             
-            <h4>💡 el problema</h4>
-            <p>Gestionar convocatorias a nivel nacional con miles de inscripciones y planillas ilegibles, métricas de conversión inexistentes, embudos de inscripción rotos y total ceguera respecto al impacto demográfico en tiempo real.</p>
+            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
+            <p>Gestionar convocatorias masivas a nivel nacional utilizando planillas estáticas genera pérdida de control sobre las métricas de conversión, puntos de fuga no detectados en el embudo de inscripción y ceguera analítica respecto al impacto territorial en tiempo real.</p>
             
-            <h4>🚀 la solución</h4>
-            <p>Es una plataforma de Business Intelligence a medida que transforma registros planos de Google Sheets en un centro de comando interactivo y de alta fidelidad visual. Diseñado específicamente para el monitoreo estratégico de proyectos sociales y educativos, este sistema permite auditar el pulso real de la convocatoria. Resuelve la falta de visibilidad automatizando el cálculo de tasas de conversión por canal, identificando brechas geográficas en tiempo real y segmentando audiencias de manera cruzada con un solo clic.</p>
+            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
+            <p>Plataforma de <strong>Business Intelligence</strong> que transforma flujos de datos planos en un centro de comando interactivo. Centraliza la auditoría de campañas calculando de manera automatizada las tasas de conversión por canal de difusión, mapeando brechas demográficas en tiempo real y permitiendo segmentaciones dinámicas cruzadas para decisiones corporativas inmediatas.</p>
             
-            <h4>🌟 características clave & storytelling visual</h4>
-            <p>Embudo de conversión realizado por canal; ranking total de provincias optimizado; filtros cruzados interactivos (Cross-Filtering); termómetro y análisis histórico (un módulo comparativo avanzado con cálculo de brechas que mide el rendimiento de la campaña actual frente al año anterior para asegurar el cumplimiento del objetivo global); acceso seguro y optimizado.</p>
-            
-            <h4>🛠️ stack tecnológico</h4>
+            <h4><i class="fa-solid fa-layer-group"></i> Arquitectura Técnica</h4>
             <ul>
-                <li><strong>Frontend:</strong> HTML5, CSS3 (Bootstrap 5 para un diseño responsivo y moderno), JavaScript Moderno (ES6+).</li>
-                <li><strong>Visualización de datos:</strong> Chart.js, configurado a bajo nivel para renderizados dinámicos, control de aspect-ratio adaptable y manejo de eventos onClick interactivos.</li>
-                <li><strong>Backend & Base de datos:</strong> Google Apps Script (GAS), actuando como el motor del servidor, consumiendo y procesando datos de Google Sheets en milisegundos a través de ejecuciones asíncronas (google.script.run).</li>
+                <li><strong>Frontend:</strong> Interfaz limpia desarrollada en HTML5, CSS3 y Bootstrap 5 para una respuesta fluida.</li>
+                <li><strong>Data Visualization:</strong> Chart.js inyectado a bajo nivel con control de eventos responsivos y actualización síncrona de nodos gráficos.</li>
+                <li><strong>Backend Engine:</strong> Servidor montado en Google Apps Script conectando mediante callbacks asíncronos rápidos a repositorios Cloud en Sheets.</li>
             </ul>
         </div>
     </div>
 
-    <!-- POPUP 3: MODAL GESTIÓN ACADÉMICA -->
+    <!-- MODAL 3: GESTIÓN ACADÉMICA -->
     <div id="modal-sistema" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-sistema')">
         <div class="modal-wrapper">
             <button class="modal-close" onclick="closeModal('modal-sistema')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="font-size: 1.8rem; margin-bottom: 10px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">🎓 Gestión académica – Sistema de alerta temprana y Learning Analytics</h2>
+            <h2>🎓 Gestión académica & Alerta temprana</h2>
             
-            <h4>💡 el problema</h4>
-            <p>Los reportes tradicionales de los LMS entrega "fotos" estáticas del pasado, no flujos dinámicos del presente.</p>
+            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
+            <p>Los reportes tradicionales extraídos de las plataformas LMS suelen ser estáticos y retrospectivos; actúan como una "foto del pasado" que impide intervenir de manera temprana cuando un alumno detiene su actividad en el campus.</p>
             
-            <h4>🚀 la solución</h4>
-            <p>Es una plataforma web de Learning Analytics y retención estudiantil que transforma datos crudos de plataformas educativas en estrategias preventivas de intervención en tiempo real. A través de un ecosistema visual e intuitivo, la aplicación procesa automáticamente los reportes de actividad y avance para segmentar a los estudiantes según su nivel de riesgo. El sistema no solo calcula la inactividad cronológica, sino que evalúa el progreso académico relativo comparando a cada alumno con el ritmo real de su comisión, permitiendo a los tutores anticiparse a la deserción mediante un módulo CRM integrado para registrar bitácoras, gestionar alertas sistémicas y automatizar el seguimiento.</p>
+            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
+            <p>Ecosistema web de <strong>Learning Analytics</strong> orientado a la retención preventiva. Consolida de forma masiva los reportes de avance y navegación mediante algoritmos customizados que detectan niveles de riesgo relativo por comisión. Cuenta con un módulo CRM de gestión interna para asentar bitácoras operativas, automatizar cadenas de seguimiento por tutorías corporativas y centralizar el estado analítico de deserción.</p>
             
-            <h4>🌟 características clave</h4>
+            <h4><i class="fa-solid fa-code"></i> Componentes del Entorno</h4>
             <ul>
-                <li><strong>Panel de Seguimiento Inteligente:</strong> Filtros dinámicos por carrera, comisiones, materias y buscador de alumnos por tokens que prioriza conciencias exactas de identidad.</li>
-                <li><strong>Algoritmo de alerta temprana:</strong> Clasificación automatizada en semáforos basada en reglas de negocio customizables de inactividad e ingresos nulos.</li>
-                <li><strong>Detección de riesgo académico:</strong> Registro centralizado de gestiones; Módulo Business Intelligence (Datos macro) con matriz de análisis de salud institucional que permite comparar de manera longitudinal la evolución de la retención entre múltiples hitos de control.</li>
+                <li><strong>Filtros Avanzados:</strong> Buscador predictivo indexado por tokens de identidad únicos y agrupamiento ágil por cohortes académicas.</li>
+                <li><strong>Semáforo de Riesgo:</strong> Reglas sistémicas de inactividad que automatizan alarmas operativas.</li>
+                <li><strong>Data Warehouse:</strong> Google Sheets procesado como motor transaccional veloz mediante objetos optimizados en memoria nativa de JS.</li>
             </ul>
-            
-            <h4>🛠️ tecnología y arquitectura</h4>
-            <p>Diseñado bajo un enfoque de costo cero de infraestructura ($0) y máxima eficiencia operativa, el proyecto se apoya por completo en soluciones Cloud corporativas:</p>
-            <ul>
-                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript Avanzado (ES6+) y Bootstrap 5.3 para una interfaz responsiva y fluida.</li>
-                <li><strong>Backend:</strong> Google Apps Script (GAS) como entorno de ejecución del lado del servidor.</li>
-                <li><strong>Persistencia de Datos:</strong> Google Sheets configurado como base de datos de alta velocidad mediante el uso de colecciones indexadas (Map en JS) para evitar cuellos de botella en consultas masivas.</li>
-                <li><strong>Integración de Archivos:</strong> Google Drive API para la sincronización y consolidación automatizada de reportes Excel externos en lotes.</li>
-                <li><strong>Seguridad:</strong> Autenticación nativa e inicio de sesión seguro mediante el protocolo OAuth2 de Google.</li>
-            </ul>
-
-            <h4 style="color: #4ade80;">📈 el valor de negocio (el resultado)</h4>
-            <p style="color: #cbd5e1;">Permite medir de manera real la tasa de efectividad de las intervenciones del equipo de retención, optimiza las horas de trabajo humano dirigiendo los esfuerzos hacia los estudiantes recuperables y reduce drásticamente las tasas de abandono institucional mediante el uso inteligente y pragmático de los datos.</p>
         </div>
     </div>
 
-    <!-- POPUP 4: MODAL SISTEMA DE EVALUACIONES SINCRÓNICAS -->
+    <!-- MODAL 4: ENTORNO SEGURO EXÁMENES -->
     <div id="modal-examenes" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-examenes')">
         <div class="modal-wrapper">
             <button class="modal-close" onclick="closeModal('modal-examenes')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="font-size: 1.8rem; margin-bottom: 10px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">📝 Entorno seguro de exámenes sincrónicos y auditoría docente</h2>
+            <h2>📝 Entorno seguro de exámenes sincrónicos</h2>
             
-            <h4>💡 el problema</h4>
-            <p>La evaluación a distancia en entornos web suele sufrir de vulnerabilidades críticas: pérdida de progreso por fallas de conectividad de los alumnos, dificultades para auditar el tiempo real de resolución y la exposición constante al fraude académico mediante el uso de herramientas de Inteligencia Artificial a través del copiado y pegado de textos.</p>
+            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
+            <p>La toma de exámenes online sufre de tres puntos vulnerables: pérdida de progreso del alumno ante microcortes de conexión local, falta de control estricto sobre la duración legal de la sesión y fraude por copiado/pegado de respuestas elaboradas con Inteligencia Artificial.</p>
             
-            <h4>🚀 la solución</h4>
-            <p>Se desarrolló una WebApp de alto rendimiento en Google Apps Script que funciona como un entorno controlado de rendición de exámenes. El sistema valida la identidad de manera unívoca, gestiona sesiones de tiempo estrictas y automatizar la persistencia de datos ante cualquier microcorte de red. Al mismo tiempo, ofrece al cuerpo docente un panel de control completamente aislado y protegido por contraseña para auditar las respuestas y asentar las calificaciones de forma centralizada sin intermediarios.</p>
+            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
+            <p>Software web de evaluación controlada con persistencia garantizada. La aplicación implementa bloqueos a nivel de cliente para anular eventos del portapapeles y menús contextuales, forzando la redacción genuina. Controla el tiempo mediante un temporizador del lado del servidor inalterable ante cierres de pestañas y resguarda datos automáticamente cada segundo mediante flujos asíncronos en segundo plano.</p>
             
-            <h4>🌟 mecanismos de control & integridad académica</h4>
+            <h4><i class="fa-solid fa-shield-halved"></i> Mecanismos de Integridad</h4>
             <ul>
-                <li><strong>Autenticación Única por DNI:</strong> La base de datos valida la identidad del estudiante e impide accesos duplicados o simultáneos a la misma evaluación.</li>
-                <li><strong>Temporizador de Sesión Server-Side:</strong> Una vez iniciado el examen, el contador comienza a correr del lado del servidor. Si el alumno cierra la pestaña, reinicia el navegador o pierde conexión, el tiempo sigue corriendo de forma lineal, impidiendo pausas maliciosas.</li>
-                <li><strong>Persistencia por Autoguardado Dinámico:</strong> Integra un script asíncrono que almacena las respuestas del estudiante en tiempo real a medida que escribe, eliminando el riesgo de pérdida de información por fallas técnicas.</li>
-                <li><strong>Bloqueo de Portapapeles (Anti-IA):</strong> Restringe por completo los eventos del teclado y mouse relacionados con pegar texto (`onpaste`), forzando la redacción manual y mitigando el uso de prompts pregenerados por Inteligencia Artificial.</li>
-                <li><strong>Módulo de Corrección Docente Restringido:</strong> Sección administrativa independiente y protegida bajo contraseña que permite a los profesores visualizar las respuestas consolidadas de cada alumno y asignar notas finales con total privacidad.</li>
+                <li><strong>Anti-IA Clipboard Security:</strong> Desactivación absoluta de inserción de textos externos (`onpaste`).</li>
+                <li><strong>Server-Side Timer:</strong> Persistencia cronometrada ligada al DNI del alumno.</li>
+                <li><strong>Auditoría Docente:</strong> Panel de control cifrado exclusivo para corrección paralela en tiempo real.</li>
             </ul>
-            
-            <h4>🛠️ stack tecnológico</h4>
-            <ul>
-                <li><strong>Arquitectura del Servidor:</strong> Google Apps Script (WebApp) procesando solicitudes asíncronas para el guardado progresivo de datos.</li>
-                <li><strong>UI/UX Frontend:</strong> HTML5, CSS3 (Bootstrap 5.3) y JavaScript Avanzado para la inhabilitación del portapapeles y la sincronización síncrona del reloj en pantalla.</li>
-                <li><strong>Persistencia de Datos:</strong> Google Sheets indexado para la persistencia inmediata de cada token de respuesta.</li>
-            </ul>
-
-            <h4 style="color: #4ade80;">📈 impacto operativo</h4>
-            <p style="color: #cbd5e1;">Garantiza un proceso de evaluación 100% transparente y auditable para las carreras a distancia. Protege el valor del título institucional frente al fraude tecnológico y automatiza el resguardo de la información del estudiante, resolviendo las contingencias técnicas del examen sin costo de infraestructura.</p>
         </div>
     </div>
 
-    <!-- SCRIPTS DE FILTRADO Y POPUPS -->
+    <!-- SCRIPTS DE FILTRADO Y POPUPS (Solucionado el bug de renderizado) -->
     <script>
+        // Propuesta 3: Filtrado fluido optimizado
         function filterProjects(category, clickedButton) {
             const cards = document.querySelectorAll('.project-card');
             const buttons = document.querySelectorAll('.filter-btn');
+            const grid = document.getElementById('main-grid');
             
-            buttons.forEach(btn => {
-                btn.style.background = 'var(--surface-color)';
-                btn.style.color = 'var(--text-main)';
-                btn.style.border = '1px solid rgba(255,255,255,0.1)';
-            });
+            // Cambiar estados activos en los botones del menú
+            buttons.forEach(btn => btn.classList.remove('active'));
+            clickedButton.classList.add('active');
             
-            clickedButton.style.background = 'var(--primary-color)';
-            clickedButton.style.color = '#0f172a';
-            clickedButton.style.border = 'none';
-
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            // Animación de salida de la grilla
+            grid.style.opacity = '0.3';
+            
+            setTimeout(() => {
+                cards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (category === 'all' || cardCategory === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+                // Animación de entrada con los elementos ya filtrados
+                grid.style.opacity = '1';
+            }, 200);
         }
 
+        // Funciones de control de modales laterales
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) closeModal(activeModal.id);
+            }
+        });
 
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
