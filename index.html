@@ -47,11 +47,17 @@
         /* --- HERO SECTION --- */
         .hero {
             min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            align-items: center;
+            gap: 50px;
+            padding-top: 80px;
+        }
+
+        .hero-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
-            padding-top: 80px;
         }
 
         .hero h1 {
@@ -79,6 +85,22 @@
             color: var(--text-muted);
             margin-bottom: 40px;
             animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-image img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 2px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .btn {
@@ -115,87 +137,106 @@
             color: var(--text-main);
         }
 
-        /* --- NUEVA SECCIÓN: METODOLOGÍA Y ENFOQUE --- */
-        .framework-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 40px;
+        /* --- ESTRUCTURA DE TRABAJO --- */
+        .framework-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        .framework-column {
+        .framework-card {
             background-color: var(--surface-color);
             padding: 40px;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .framework-column h3 {
-            font-size: 1.6rem;
+        .framework-card h3 {
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             color: var(--text-main);
             border-bottom: 2px solid rgba(56, 189, 248, 0.2);
             padding-bottom: 10px;
         }
 
-        /* Lista metodológica "Cómo trabajo" */
-        .method-list {
-            list-style: none;
+        /* Flujo horizontal para "Cómo trabajo" */
+        .process-pipeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .process-step {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            align-items: flex-start;
+            gap: 15px;
+            position: relative;
         }
 
-        .method-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        /* Flecha conectora entre pasos (oculta en el último) */
+        .process-step:not(:last-child)::after {
+            content: "\f061";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: -10px;
+            top: 10px;
+            color: rgba(56, 189, 248, 0.2);
+            font-size: 1rem;
         }
 
-        .method-number {
-            font-size: 1.2rem;
+        .step-number {
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--primary-color);
             background: rgba(56, 189, 248, 0.1);
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            flex-shrink: 0;
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
-        .method-text {
-            font-size: 1.1rem;
+        .step-text {
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-main);
         }
 
-        /* Lista de enfoque */
-        .focus-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
+        /* Cuadrícula para "Mi enfoque" */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .focus-item {
             display: flex;
-            align-items: center;
             gap: 15px;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .focus-item i {
             color: var(--primary-color);
             font-size: 1.2rem;
-            flex-shrink: 0;
+            margin-top: 3px;
         }
 
         .focus-item strong {
             color: var(--text-main);
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
         }
 
         /* --- SERVICIOS --- */
@@ -311,13 +352,20 @@
         }
 
         /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+            .hero-image { order: -1; }
+            .btn { margin: 0 auto; }
+            .process-pipeline { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .process-step:not(:last-child)::after { display: none; }
+        }
+
         @media (max-width: 768px) {
             section { padding: 60px 0; }
             .section-title { font-size: 2rem; }
             .contact-card { width: 100%; justify-content: center; }
             .experience-grid { justify-content: center; }
-            .framework-grid { gap: 25px; }
-            .framework-column { padding: 30px 20px; }
+            .process-pipeline { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -327,73 +375,20 @@
         
         <!-- HERO SECTION -->
         <header class="hero">
-            <h1>Alan Llamal</h1>
-            <div class="tagline">L&D | Diseño Instruccional | Employee Experience</div>
-            <p class="bio">
-                Especialista en aprendizaje organizacional. Diseño experiencias de capacitación, onboarding y transformación digital para organizaciones que buscan desarrollar personas, optimizar procesos y potenciar el uso de la tecnología.
-            </p>
-            <a href="portfolio.html" class="btn">
-                Ver Portfolio <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </header>
-
-        <!-- METODOLOGÍA Y ENFOQUE -->
-        <section id="metodologia">
-            <h2 class="section-title">Estructura de trabajo</h2>
-            <div class="framework-grid">
-                
-                <!-- Columna: Cómo trabajo -->
-                <div class="framework-column">
-                    <h3>Cómo trabajo</h3>
-                    <ul class="method-list">
-                        <li class="method-item">
-                            <span class="method-number">1</span>
-                            <span class="method-text">Relevo la necesidad</span>
-                        </li>
-                        <li class="method-item">
-                            <span class="method-number">2</span>
-                            <span class="method-text">Diseño la solución</span>
-                        </li>
-                        <li class="method-item">
-                            <span class="method-number">3</span>
-                            <span class="method-text">Implemento</span>
-                        </li>
-                        <li class="method-item">
-                            <span class="method-number">4</span>
-                            <span class="method-text">Mido resultados</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Columna: Mi enfoque -->
-                <div class="framework-column">
-                    <h3>Mi enfoque</h3>
-                    <ul class="focus-list">
-                        <li class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Aprendizaje basado en evidencia:</strong> Decisiones formativas sustentadas en datos y metodologías comprobadas.</span>
-                        </li>
-                        <li class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Experiencia del usuario y engagement:</strong> Interfaces intuitivas y dinámicas diseñadas para el estudiante.</span>
-                        </li>
-                        <li class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Automatización de procesos:</strong> Reducción de carga operativa mediante desarrollos inteligentes.</span>
-                        </li>
-                        <li class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Uso práctico de IA:</strong> Integración de tecnologías disruptivas orientada a la eficiencia real.</span>
-                        </li>
-                        <li class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Medición de resultados:</strong> Evaluación de impacto constante para garantizar la mejora continua.</span>
-                        </li>
-                    </ul>
-                </div>
-
+            <div class="hero-content">
+                <h1>Alan Llamal</h1>
+                <div class="tagline">L&D | diseño instruccional | employee experience</div>
+                <p class="bio">
+                    Especialista en aprendizaje organizacional. Diseño experiencias de capacitación, onboarding y transformación digital para organizaciones que buscan desarrollar personas, optimizar procesos y potenciar el uso de la tecnología.
+                </p>
+                <a href="portfolio.html" class="btn">
+                    Ver portfolio <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
-        </section>
+            <div class="hero-image">
+                <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/WhatsApp%20Image%202026-06-22%20at%2021.15.31.jpeg" alt="Alan Llamal">
+            </div>
+        </header>
 
         <!-- SERVICIOS -->
         <section id="servicios">
@@ -428,6 +423,64 @@
                     <i class="fa-solid fa-brain"></i>
                     <h3>Tecnología para el aprendizaje y la gestión</h3>
                     <p>Diseño de aplicaciones, dashboards y automatizaciones en Google Workspace que mejoran la experiencia de aprendizaje, la gestión operativa y el acceso a información estratégica.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ESTRUCTURA DE TRABAJO -->
+        <section id="metodologia">
+            <h2 class="section-title">Estructura de trabajo</h2>
+            <div class="framework-flex">
+                
+                <!-- Tarjeta horizontal: Cómo trabajo -->
+                <div class="framework-card">
+                    <h3>Cómo trabajo</h3>
+                    <div class="process-pipeline">
+                        <div class="process-step">
+                            <span class="step-number">1</span>
+                            <span class="step-text">Relevo la necesidad</span>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">2</span>
+                            <span class="step-text">Diseño la solución</span>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">3</span>
+                            <span class="step-text">Implemento</span>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">4</span>
+                            <span class="step-text">Mido resultados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Mi enfoque -->
+                <div class="framework-card">
+                    <h3>Mi enfoque</h3>
+                    <div class="focus-grid">
+                        <div class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Aprendizaje basado en evidencia</strong> Decisiones formativas sustentadas en datos y metodologías comprobadas.</span>
+                        </div>
+                        <div class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Experiencia del usuario y engagement</strong> Interfaces intuitivas y dinámicas diseñadas para el estudiante.</span>
+                        </div>
+                        <div class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Automatización de procesos</strong> Reducción de carga operativa mediante desarrollos inteligentes.</span>
+                        </div>
+                        <div class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Uso práctico de IA</strong> Integración de tecnologías disruptivas orientada a la eficiencia real.</span>
+                        </div>
+                        <div class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Medición de resultados</strong> Evaluación de impacto constante para garantizar la mejora continua.</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
