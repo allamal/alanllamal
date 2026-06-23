@@ -224,7 +224,6 @@
             font-weight: 600;
         }
 
-        /* CORREGIDO: Se removió el truncation por CSS. El texto se visualiza completo siempre. */
         .project-description {
             color: var(--text-muted);
             font-size: 0.9rem;
@@ -278,7 +277,8 @@
         }
 
         .modal-wrapper {
-            background-color: #0c111d;
+            background-color: rgba(12, 17, 29, 0.95);
+            backdrop-filter: var(--blur-effect);
             border-left: 1px solid var(--surface-border);
             width: 100%;
             max-width: 600px;
@@ -442,7 +442,6 @@
             </article>
 
             <!-- Tarjeta 4: APP DE GAMIFICACIÓN EN HTML -->
-            <!-- CORREGIDO: Actúa como link externo fullscreen para ver el GIF completo, igual que el resto de e-learning. -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
                     <img src="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" alt="App de gamificación en HTML">
@@ -516,7 +515,7 @@
     <!-- MODAL 2: DASHBOARD INSCRIPCIONES -->
     <div id="modal-dashboard" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-dashboard')">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-dashboard')"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" onclick="closeModal('modal-dashboard')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
             <h2>📊 Dashboard de inscripciones</h2>
             
             <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
@@ -537,7 +536,7 @@
     <!-- MODAL 3: GESTIÓN ACADÉMICA -->
     <div id="modal-sistema" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-sistema')">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-sistema')"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" onclick="closeModal('modal-sistema')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
             <h2>🎓 Gestión académica & Alerta temprana</h2>
             
             <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
@@ -558,14 +557,14 @@
     <!-- MODAL 4: ENTORNO SEGURO EXÁMENES -->
     <div id="modal-examenes" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-examenes')">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-examenes')"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" onclick="closeModal('modal-examenes')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
             <h2>📝 Entorno seguro de exámenes sincrónicos</h2>
             
             <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
             <p>La toma de exámenes online sufre de tres puntos vulnerables: pérdida de progreso del alumno ante microcortes de conexión local, falta de control estricto sobre la duración legal de la sesión y fraude por copiado/pegado de respuestas elaboradas con Inteligencia Artificial.</p>
             
             <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
-            <p>Software web de evaluación controlada con persistencia garantizada. La aplicación implementa bloqueos a nivel de cliente para anular eventos del portapapeles y menús contextuales, forzando la redacción genuina. Controla el tiempo mediante un temporizador del lado del servidor inalterable ante cierres de pestañas y resguarda datos automáticamente cada segundo mediante flujos asíncronos en segundo plano.</p>
+            <p>Software web de evaluación controlada con progreso garantizada. La aplicación implementa bloqueos a nivel de cliente para anular eventos del portapapeles y menús contextuales, forzando la redacción genuina. Controla el tiempo mediante un temporizador del lado del servidor inalterable ante cierres de pestañas y resguarda datos automáticamente cada segundo mediante flujos asíncronos en segundo plano.</p>
             
             <h4><i class="fa-solid fa-shield-halved"></i> Mecanismos de Integridad</h4>
             <ul>
@@ -602,8 +601,32 @@
         }
 
         function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                // Previene brincos en el layout al ocultar el scrollbar
+                const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+                document.body.style.paddingRight = `${scrollBarWidth}px`;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    document.body.style.overflow = 'auto';
+                    document.body.style.paddingRight = '0px';
+                }, 400); // Sincronizado con la transición CSS
+            }
+        }
+
+        function closeModalOnOverlay(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
         }
 
         document.addEventListener('keydown', function(e) {
@@ -612,17 +635,6 @@
                 if (activeModal) closeModal(activeModal.id);
             }
         });
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeModalOnOverlay(event, modalId) {
-            if (event.target.id === modalId) {
-                closeModal(modalId);
-            }
-        }
     </script>
 
 </body>
