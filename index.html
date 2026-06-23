@@ -115,6 +115,89 @@
             color: var(--text-main);
         }
 
+        /* --- NUEVA SECCIÓN: METODOLOGÍA Y ENFOQUE --- */
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+        }
+
+        .framework-column {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .framework-column h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 10px;
+        }
+
+        /* Lista metodológica "Cómo trabajo" */
+        .method-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .method-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .method-number {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            background: rgba(56, 189, 248, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .method-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Lista de enfoque */
+        .focus-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .focus-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .focus-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .focus-item strong {
+            color: var(--text-main);
+        }
+
         /* --- SERVICIOS --- */
         .services-grid {
             display: grid;
@@ -175,8 +258,8 @@
         .client-tag img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Esto evita que los logos se deformen */
-            filter: grayscale(100%) opacity(0.5); /* Filtro blanco y negro */
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.5);
             transition: all 0.4s ease;
         }
 
@@ -188,7 +271,7 @@
         }
 
         .client-tag:hover img {
-            filter: grayscale(0%) opacity(1); /* Vuelve al color original */
+            filter: grayscale(0%) opacity(1);
         }
 
         /* --- CONTACTO --- */
@@ -233,6 +316,8 @@
             .section-title { font-size: 2rem; }
             .contact-card { width: 100%; justify-content: center; }
             .experience-grid { justify-content: center; }
+            .framework-grid { gap: 25px; }
+            .framework-column { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -245,12 +330,70 @@
             <h1>Alan Llamal</h1>
             <div class="tagline">L&D | Diseño Instruccional | Employee Experience</div>
             <p class="bio">
-                Especialista en aprendizaje organizacional. Diseño experiencias de capacitación, onboarding y transformación digital que conectan personas, procesos y tecnología para generar cambios sostenibles en las organizaciones.
+                Especialista en aprendizaje organizacional. Diseño experiencias de capacitación, onboarding y transformación digital para organizaciones que buscan desarrollar personas, optimizar procesos y potenciar el uso de la tecnología.
             </p>
-<a href="portfolio.html" class="btn">
-    Ver Portfolio <i class="fa-solid fa-arrow-right"></i>
+            <a href="portfolio.html" class="btn">
+                Ver Portfolio <i class="fa-solid fa-arrow-right"></i>
             </a>
         </header>
+
+        <!-- METODOLOGÍA Y ENFOQUE -->
+        <section id="metodologia">
+            <h2 class="section-title">Estructura de trabajo</h2>
+            <div class="framework-grid">
+                
+                <!-- Columna: Cómo trabajo -->
+                <div class="framework-column">
+                    <h3>Cómo trabajo</h3>
+                    <ul class="method-list">
+                        <li class="method-item">
+                            <span class="method-number">1</span>
+                            <span class="method-text">Relevo la necesidad</span>
+                        </li>
+                        <li class="method-item">
+                            <span class="method-number">2</span>
+                            <span class="method-text">Diseño la solución</span>
+                        </li>
+                        <li class="method-item">
+                            <span class="method-number">3</span>
+                            <span class="method-text">Implemento</span>
+                        </li>
+                        <li class="method-item">
+                            <span class="method-number">4</span>
+                            <span class="method-text">Mido resultados</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna: Mi enfoque -->
+                <div class="framework-column">
+                    <h3>Mi enfoque</h3>
+                    <ul class="focus-list">
+                        <li class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Aprendizaje basado en evidencia:</strong> Decisiones formativas sustentadas en datos y metodologías comprobadas.</span>
+                        </li>
+                        <li class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Experiencia del usuario y engagement:</strong> Interfaces intuitivas y dinámicas diseñadas para el estudiante.</span>
+                        </li>
+                        <li class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Automatización de procesos:</strong> Reducción de carga operativa mediante desarrollos inteligentes.</span>
+                        </li>
+                        <li class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Uso práctico de IA:</strong> Integración de tecnologías disruptivas orientada a la eficiencia real.</span>
+                        </li>
+                        <li class="focus-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><strong>Medición de resultados:</strong> Evaluación de impacto constante para garantizar la mejora continua.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
 
         <!-- SERVICIOS -->
         <section id="servicios">
