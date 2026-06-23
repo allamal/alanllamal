@@ -21,7 +21,6 @@
             --primary-color: #38bdf8;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --glass-bg: rgba(15, 23, 42, 0.6);
             --blur-effect: blur(12px);
         }
 
@@ -34,7 +33,6 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            /* Propuesta 4: Gradiente radial profundo de fondo */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(30, 58, 138, 0.2) 0%, transparent 50%);
@@ -98,7 +96,7 @@
             max-width: 700px;
         }
 
-        /* --- Propuesta 3: CONTROL DE FILTROS MINIMALISTAS --- */
+        /* --- FILTROS MINIMALISTAS --- */
         .filter-container {
             display: flex;
             gap: 25px;
@@ -139,7 +137,7 @@
             box-shadow: 0 0 10px var(--primary-color);
         }
 
-        /* --- Propuesta 3 y 4: GRILLA Y TARJETAS GLASSMORPHISM --- */
+        /* --- GRILLA Y TARJETAS GLASSMORPHISM --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -156,7 +154,6 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* Animación suave para el filtrado */
             opacity: 1;
             transform: scale(1);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -227,15 +224,13 @@
             font-weight: 600;
         }
 
+        /* CORREGIDO: Se removió el truncation por CSS. El texto se visualiza completo siempre. */
         .project-description {
             color: var(--text-muted);
             font-size: 0.9rem;
             margin-bottom: 25px;
             flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.6;
         }
 
         .project-link {
@@ -260,7 +255,7 @@
             gap: 12px;
         }
 
-        /* --- Propuesta 2: MODAL LATERAL TECH (SLIDING CASE STUDY) --- */
+        /* --- MODAL LATERAL TECH (SLIDING CASE STUDY) --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -270,7 +265,7 @@
             background-color: rgba(7, 10, 19, 0.6);
             backdrop-filter: blur(4px);
             display: flex;
-            justify-content: flex-end; /* Lo alinea a la derecha */
+            justify-content: flex-end;
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
@@ -286,12 +281,12 @@
             background-color: #0c111d;
             border-left: 1px solid var(--surface-border);
             width: 100%;
-            max-width: 600px; /* Tamaño de panel de control lateral */
+            max-width: 600px;
             height: 100%;
             padding: 45px 40px;
             position: relative;
             box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
-            transform: translateX(100%); /* Entra desde afuera a la derecha */
+            transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
@@ -365,10 +360,6 @@
             margin-bottom: 8px;
             line-height: 1.6;
         }
-
-        .modal-wrapper strong {
-            color: rgba(255,255,255,0.9);
-        }
     </style>
 </head>
 <body>
@@ -388,14 +379,14 @@
             <p class="page-subtitle">Soluciones operativas eficientes y recursos e-learning de alto impacto diseñados para optimizar entornos institucionales.</p>
         </header>
 
-        <!-- Propuesta 3: MENÚ DE FILTRADO MINIMALISTA -->
+        <!-- Menú de Filtrado Minimalista -->
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterProjects('all', this)">Todos los proyectos</button>
             <button class="filter-btn" onclick="filterProjects('learning', this)">Proyectos e-learning</button>
             <button class="filter-btn" onclick="filterProjects('tech', this)">Soluciones operativas</button>
         </div>
 
-        <!-- GRILLA DE PROYECTOS (Corregida la visibilidad por defecto) -->
+        <!-- GRILLA DE PROYECTOS -->
         <div class="portfolio-grid" id="main-grid">
             
             <!-- Tarjeta 1: CURSO STORYLINE -->
@@ -451,6 +442,7 @@
             </article>
 
             <!-- Tarjeta 4: APP DE GAMIFICACIÓN EN HTML -->
+            <!-- CORREGIDO: Actúa como link externo fullscreen para ver el GIF completo, igual que el resto de e-learning. -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
                     <img src="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" alt="App de gamificación en HTML">
@@ -462,7 +454,7 @@
                     </div>
                     <h3 class="project-title">App de gamificación en HTML</h3>
                     <p class="project-description">El desarrollo convierte conceptos semiológicos complejos en un entorno de laboratorio seguro donde los estudiantes configuran titulares mediante variables sintácticas modulares. A través de un motor basado en JavaScript nativo, la interfaz evalúa algorítmicamente las decisiones del usuario y muestra en tiempo real un termómetro visual con la intensidad de la carga valorativa. Al finalizar las rondas temáticas, el sistema calcula un perfil de línea editorial personalizado y ofrece un cierre pedagógico que conecta la experiencia lúdica con la teoría de Roland Barthes. Es un recurso educativo autónomo, responsivo y de alto impacto didáctico, ideal para integrarse de forma nativa en cualquier sistema de gestión de aprendizaje.</p>
-                    <button onclick="openModal('modal-gamificacion')" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></button>
+                    <a href="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
@@ -519,16 +511,7 @@
 
     </div>
 
-    <!-- --- SECCIÓN MODALES BIEN MAQUETADOS (Propuesta 2 Lateral Panel) --- -->
-
-    <!-- MODAL 1: GAMIFICACIÓN -->
-    <div id="modal-gamificacion" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-gamificacion')">
-        <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-gamificacion')"><i class="fa-solid fa-xmark"></i></button>
-            <h2>App de gamificación en HTML</h2>
-            <p>El desarrollo convierte conceptos semiológicos complejos en un entorno de laboratorio seguro donde los estudiantes configuran titulares mediante variables sintácticas modulares. A través de un motor basado en JavaScript nativo, la interfaz evalúa algorítmicamente las decisiones del usuario y muestra en tiempo real un termómetro visual con la intensidad de la carga valorativa. Al finalizar las rondas temáticas, el sistema calcula un perfil de línea editorial personalizado y ofrece un cierre pedagógico que conecta la experiencia lúdica con la teoría de Roland Barthes. Es un recurso educativo autónomo, responsivo y de alto impacto didáctico, ideal para integrarse de forma nativa en cualquier sistema de gestión de aprendizaje.</p>
-        </div>
-    </div>
+    <!-- --- SECCIÓN CASOS DE ESTUDIO (Solo soluciones operativas GAS) --- -->
 
     <!-- MODAL 2: DASHBOARD INSCRIPCIONES -->
     <div id="modal-dashboard" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-dashboard')">
@@ -593,19 +576,16 @@
         </div>
     </div>
 
-    <!-- SCRIPTS DE FILTRADO Y POPUPS (Solucionado el bug de renderizado) -->
+    <!-- SCRIPTS DE FILTRADO Y POPUPS -->
     <script>
-        // Propuesta 3: Filtrado fluido optimizado
         function filterProjects(category, clickedButton) {
             const cards = document.querySelectorAll('.project-card');
             const buttons = document.querySelectorAll('.filter-btn');
             const grid = document.getElementById('main-grid');
             
-            // Cambiar estados activos en los botones del menú
             buttons.forEach(btn => btn.classList.remove('active'));
             clickedButton.classList.add('active');
             
-            // Animación de salida de la grilla
             grid.style.opacity = '0.3';
             
             setTimeout(() => {
@@ -617,12 +597,10 @@
                         card.classList.add('hidden');
                     }
                 });
-                // Animación de entrada con los elementos ya filtrados
                 grid.style.opacity = '1';
             }, 200);
         }
 
-        // Funciones de control de modales laterales
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
