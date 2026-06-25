@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alan Llamal | L&D Consultant</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -208,7 +206,7 @@
             color: var(--text-main);
         }
 
-        /* Cuadrícula para "Mi enfoque" */
+        /* Cuadrícula para "Mi enfoque / Qué buscan" */
         .focus-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -224,6 +222,21 @@
             padding: 20px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative; /* Clave para que funcione el z-index en hover */
+            /* Transición fluida con un sutil efecto rebote (spring) */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease,
+                        background 0.4s ease;
+        }
+
+        /* Efecto de superposición y "Adelantamiento" (Pop-out) */
+        .focus-item:hover {
+            transform: translateY(-5px) scale(1.03); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.05);
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            z-index: 10; /* Fuerza a la tarjeta a renderizarse por encima de sus hermanas */
         }
 
         .focus-item i {
@@ -373,7 +386,6 @@
 
     <div class="container">
         
-        <!-- HERO SECTION -->
         <header class="hero">
             <div class="hero-content">
                 <h1>Alan Llamal</h1>
@@ -390,7 +402,6 @@
             </div>
         </header>
 
-        <!-- SERVICIOS -->
         <section id="servicios">
             <h2 class="section-title">Servicios</h2>
             <div class="services-grid">
@@ -421,19 +432,17 @@
 
                 <div class="service-card">
                     <i class="fa-solid fa-brain"></i>
-                    <h3>Automatización y digitalización de procesos</h3>
-                    <p>Diseño de aplicaciones, dashboards y automatizaciones en Google Workspace para optimizar procesos de Recursos Humanos, capacitación y gestión operativa.</p>
+                    <h3>Tecnología para el aprendizaje y la gestión</h3>
+                    <p>Diseño de aplicaciones, dashboards y automatizaciones en Google Workspace que mejoran la experiencia de aprendizaje, la gestión operativa y el acceso a información estratégica.</p>
                 </div>
 
             </div>
         </section>
 
-        <!-- ESTRUCTURA DE TRABAJO -->
         <section id="metodologia">
             <h2 class="section-title">Estructura de trabajo</h2>
             <div class="framework-flex">
                 
-                <!-- Tarjeta horizontal: Cómo trabajo -->
                 <div class="framework-card">
                     <h3>Cómo trabajo</h3>
                     <div class="process-pipeline">
@@ -456,37 +465,41 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta: Mi enfoque -->
                 <div class="framework-card">
-                    <h3>Mi enfoque</h3>
+                    <h3>Qué buscan las organizaciones cuando me convocan</h3>
                     <div class="focus-grid">
+                        
                         <div class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Aprendizaje basado en evidencia</strong> Decisiones formativas sustentadas en datos y metodologías comprobadas.</span>
+                            <i class="fa-solid fa-bolt"></i>
+                            <span><strong>Reducir tiempos de adaptación</strong> Procesos de onboarding más rápidos y estructurados.</span>
                         </div>
+                        
                         <div class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Experiencia del usuario y engagement</strong> Interfaces intuitivas y dinámicas diseñadas para el estudiante.</span>
+                            <i class="fa-solid fa-robot"></i>
+                            <span><strong>Eliminar tareas manuales</strong> Automatizaciones y herramientas simples que reducen carga operativa.</span>
                         </div>
+                        
                         <div class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Automatización de procesos</strong> Reducción de carga operativa mediante desarrollos inteligentes.</span>
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span><strong>Mejorar la experiencia de aprendizaje</strong> Capacitaciones más atractivas, medibles y alineadas al negocio.</span>
                         </div>
+                        
                         <div class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Uso práctico de IA</strong> Integración de tecnologías disruptivas orientada a la eficiencia real.</span>
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span><strong>Tomar decisiones con datos</strong> Dashboards e indicadores para medir impacto y priorizar acciones.</span>
                         </div>
+                        
                         <div class="focus-item">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span><strong>Medición de resultados</strong> Evaluación de impacto constante para garantizar la mejora continua.</span>
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <span><strong>Escalar procesos sin sumar complejidad</strong> Soluciones pensadas para crecer junto con la organización.</span>
                         </div>
+                        
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- EXPERIENCIA -->
         <section id="experiencia">
             <h2 class="section-title">Han confiado en mí</h2>
             <div class="experience-grid">
@@ -508,23 +521,19 @@
             </div>
         </section>
 
-        <!-- CONTACTO -->
         <section id="contacto">
             <h2 class="section-title">Contacto</h2>
             <div class="contact-links">
-                <!-- LinkedIn Link -->
                 <a href="https://www.linkedin.com/in/allamal/" target="_blank" rel="noopener noreferrer" class="contact-card">
                     <i class="fa-brands fa-linkedin"></i>
                     <span>LinkedIn</span>
                 </a>
                 
-                <!-- Correo Link (mailto:) -->
                 <a href="mailto:llamal@live.com.ar" class="contact-card">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Email</span>
                 </a>
                 
-                <!-- WhatsApp Link (API) -->
                 <a href="https://wa.me/5491124679179" target="_blank" rel="noopener noreferrer" class="contact-card">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>WhatsApp</span>
