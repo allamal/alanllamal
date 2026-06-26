@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alan Llamal - Especialista en L&D, diseño instruccional y transformación digital. Capacitación corporativa, e-learning, onboarding y soluciones de automatización con Google Workspace.">
+    <meta name="theme-color" content="#0b1121">
+    <meta property="og:title" content="Alan Llamal | L&D Consultant">
+    <meta property="og:description" content="Experto en diseño de experiencias de aprendizaje y soluciones operativas para organizaciones.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://allamal.github.io/Inicio/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%2338bdf8'>A</text></svg>">
+    
     <title>Alan Llamal | L&D Consultant</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,6 +122,7 @@
             transition: all 0.3s ease;
             width: fit-content;
             animation: fadeInUp 1.4s ease-out;
+            will-change: transform;
         }
 
         .btn:hover {
@@ -222,27 +231,27 @@
             padding: 20px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.03);
-            position: relative; /* Clave para que funcione el z-index en hover */
-            /* Transición fluida con un sutil efecto rebote (spring) */
+            position: relative;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         box-shadow 0.4s ease, 
                         border-color 0.4s ease,
                         background 0.4s ease;
+            will-change: transform;
         }
 
-        /* Efecto de superposición y "Adelantamiento" (Pop-out) */
         .focus-item:hover {
             transform: translateY(-5px) scale(1.03); 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.05);
             border-color: rgba(56, 189, 248, 0.3);
             background: rgba(255, 255, 255, 0.04);
-            z-index: 10; /* Fuerza a la tarjeta a renderizarse por encima de sus hermanas */
+            z-index: 10;
         }
 
         .focus-item i {
             color: var(--primary-color);
             font-size: 1.2rem;
             margin-top: 3px;
+            flex-shrink: 0;
         }
 
         .focus-item strong {
@@ -265,6 +274,7 @@
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: all 0.4s ease;
+            will-change: transform;
         }
 
         .service-card:hover {
@@ -294,6 +304,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
         }
 
         .client-tag {
@@ -307,6 +318,7 @@
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: all 0.4s ease;
+            will-change: transform;
         }
 
         .client-tag img {
@@ -346,6 +358,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.05);
+            will-change: transform;
         }
 
         .contact-card:hover {
@@ -371,6 +384,7 @@
             .btn { margin: 0 auto; }
             .process-pipeline { grid-template-columns: repeat(2, 1fr); gap: 30px; }
             .process-step:not(:last-child)::after { display: none; }
+            .experience-grid { justify-content: center; }
         }
 
         @media (max-width: 768px) {
@@ -379,6 +393,14 @@
             .contact-card { width: 100%; justify-content: center; }
             .experience-grid { justify-content: center; }
             .process-pipeline { grid-template-columns: 1fr; }
+            .container { padding: 0 20px; }
+            .focus-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding-top: 30px; }
+            .hero-image img { width: 200px; height: 200px; }
+            .section-title { font-size: 1.5rem; margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -391,14 +413,14 @@
                 <h1>Alan Llamal</h1>
                 <div class="tagline">L&D | diseño instruccional | employee experience</div>
                 <p class="bio">
-                    Especialista en aprendizaje organizacional. Diseño experiencias de capacitación, onboarding y transformación digital para organizaciones que buscan desarrollar personas, optimizar procesos y potenciar el uso de la tecnología.
+                    Especialista en aprendizaje organizacional. Diseño experiencias de capacitación, onboarding y transformación digital para organizaciones que buscan desarrollar personas, optimizar procesos y escalar su impacto.
                 </p>
                 <a href="portfolio.html" class="btn">
-                    Ver portfolio <i class="fa-solid fa-arrow-right"></i>
+                    Ver portfolio <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="hero-image">
-                <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/WhatsApp%20Image%202026-06-22%20at%2021.15.31.jpeg" alt="Alan Llamal">
+                <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/WhatsApp%20Image%202026-06-22%20at%2021.15.31.jpeg" alt="Alan Llamal, especialista en L&D y diseño instruccional" loading="lazy">
             </div>
         </header>
 
@@ -407,31 +429,31 @@
             <div class="services-grid">
                 
                 <div class="service-card">
-                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
                     <h3>Capacitación corporativa</h3>
-                    <p>Diseño e implementación de programas de formación alineados con los objetivos estratégicos de la organización, orientados al desarrollo de competencias y la mejora del desempeño.</p>
+                    <p>Diseño e implementación de programas de formación alineados con los objetivos estratégicos de la organización, orientados al desarrollo de competencias y la mejora del desempeño individual y colectivo.</p>
                 </div>
 
                 <div class="service-card">
-                    <i class="fa-solid fa-rocket"></i>
+                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                     <h3>Onboarding</h3>
                     <p>Creación de experiencias de integración que aceleran la adaptación, fortalecen el compromiso y reducen la curva de aprendizaje de nuevos colaboradores.</p>
                 </div>
 
                 <div class="service-card">
-                    <i class="fa-solid fa-laptop-code"></i>
+                    <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
                     <h3>E-learning</h3>
                     <p>Desarrollo de cursos interactivos, simuladores y recursos digitales que convierten contenidos complejos en experiencias de aprendizaje atractivas y efectivas.</p>
                 </div>
 
                 <div class="service-card">
-                    <i class="fa-solid fa-chart-line"></i>
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
                     <h3>Learning analytics</h3>
                     <p>Medición y análisis del impacto de las iniciativas de capacitación mediante indicadores, dashboards y mejora continua basada en datos.</p>
                 </div>
 
                 <div class="service-card">
-                    <i class="fa-solid fa-brain"></i>
+                    <i class="fa-solid fa-brain" aria-hidden="true"></i>
                     <h3>Tecnología para el aprendizaje y la gestión</h3>
                     <p>Diseño de aplicaciones, dashboards y automatizaciones en Google Workspace que mejoran la experiencia de aprendizaje, la gestión operativa y el acceso a información estratégica.</p>
                 </div>
@@ -470,27 +492,27 @@
                     <div class="focus-grid">
                         
                         <div class="focus-item">
-                            <i class="fa-solid fa-bolt"></i>
+                            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                             <span><strong>Reducir tiempos de adaptación</strong> Procesos de onboarding más rápidos y estructurados.</span>
                         </div>
                         
                         <div class="focus-item">
-                            <i class="fa-solid fa-robot"></i>
+                            <i class="fa-solid fa-robot" aria-hidden="true"></i>
                             <span><strong>Eliminar tareas manuales</strong> Automatizaciones y herramientas simples que reducen carga operativa.</span>
                         </div>
                         
                         <div class="focus-item">
-                            <i class="fa-solid fa-lightbulb"></i>
+                            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
                             <span><strong>Mejorar la experiencia de aprendizaje</strong> Capacitaciones más atractivas, medibles y alineadas al negocio.</span>
                         </div>
                         
                         <div class="focus-item">
-                            <i class="fa-solid fa-chart-pie"></i>
+                            <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
                             <span><strong>Tomar decisiones con datos</strong> Dashboards e indicadores para medir impacto y priorizar acciones.</span>
                         </div>
                         
                         <div class="focus-item">
-                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i>
                             <span><strong>Escalar procesos sin sumar complejidad</strong> Soluciones pensadas para crecer junto con la organización.</span>
                         </div>
                         
@@ -504,19 +526,19 @@
             <h2 class="section-title">Han confiado en mí</h2>
             <div class="experience-grid">
                 <div class="client-tag">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/5824a9f48e03bd87e02e447f95b0db95fc869b80/conciencia-identidad-hero.svg" alt="Asociación Conciencia">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/5824a9f48e03bd87e02e447f95b0db95fc869b80/conciencia-identidad-hero.svg" alt="Asociación Conciencia" loading="lazy">
                 </div>
                 <div class="client-tag">
-                    <img src="https://github.com/allamal/fotos/blob/main/eter%20-%20copia.png?raw=true" alt="ETER">
+                    <img src="https://github.com/allamal/fotos/blob/main/eter%20-%20copia.png?raw=true" alt="ETER" loading="lazy">
                 </div>
                 <div class="client-tag">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/5824a9f48e03bd87e02e447f95b0db95fc869b80/0195a44a-31d8-4925-871c-789c757786f6___2404c1d24902b87e4473b04ee66907a9.svg" alt="Cetrogar">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/5824a9f48e03bd87e02e447f95b0db95fc869b80/0195a44a-31d8-4925-871c-789c757786f6___2404c1d24902b87e4473b04ee66907a9.svg" alt="Cliente" loading="lazy">
                 </div>
                 <div class="client-tag">
-                    <img src="https://github.com/allamal/fotos/blob/main/images%20-%20copia.png?raw=true" alt="UADE">
+                    <img src="https://github.com/allamal/fotos/blob/main/images%20-%20copia.png?raw=true" alt="UADE" loading="lazy">
                 </div>
                 <div class="client-tag">
-                    <img src="https://github.com/allamal/fotos/blob/main/descarga%20-%20copia.png?raw=true" alt="UTN">
+                    <img src="https://github.com/allamal/fotos/blob/main/descarga%20-%20copia.png?raw=true" alt="UTN" loading="lazy">
                 </div>
             </div>
         </section>
@@ -524,18 +546,18 @@
         <section id="contacto">
             <h2 class="section-title">Contacto</h2>
             <div class="contact-links">
-                <a href="https://www.linkedin.com/in/allamal/" target="_blank" rel="noopener noreferrer" class="contact-card">
-                    <i class="fa-brands fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/allamal/" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Conecta conmigo en LinkedIn">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                     <span>LinkedIn</span>
                 </a>
                 
-                <a href="mailto:llamal@live.com.ar" class="contact-card">
-                    <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:llamal@live.com.ar" class="contact-card" aria-label="Envíame un email">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     <span>Email</span>
                 </a>
                 
-                <a href="https://wa.me/5491124679179" target="_blank" rel="noopener noreferrer" class="contact-card">
-                    <i class="fa-brands fa-whatsapp"></i>
+                <a href="https://wa.me/5491124679179" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Contáctame por WhatsApp">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                     <span>WhatsApp</span>
                 </a>
             </div>

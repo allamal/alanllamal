@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Alan Llamal - Proyectos de e-learning, dashboards, apps web y soluciones de automatización con Google Apps Script">
+    <meta name="theme-color" content="#070a13">
+    <meta property="og:title" content="Portfolio | Alan Llamal">
+    <meta property="og:description" content="Proyectos de diseño instruccional, e-learning, dashboards y soluciones tecnológicas">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://allamal.github.io/Inicio/portfolio.html">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%2338bdf8'>A</text></svg>">
+    
     <title>Portfolio | Alan Llamal</title>
     
     <!-- Google Fonts -->
@@ -69,6 +77,7 @@
             border-radius: 50px;
             backdrop-filter: var(--blur-effect);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .btn-back:hover {
@@ -150,7 +159,6 @@
             background: var(--surface-color);
             border-radius: 20px;
             border: 1px solid var(--surface-border);
-            backdrop-filter: var(--blur-effect);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -160,6 +168,13 @@
                         border-color 0.3s ease, 
                         box-shadow 0.3s ease,
                         opacity 0.3s ease;
+            will-change: transform;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .project-card {
+                backdrop-filter: var(--blur-effect);
+            }
         }
 
         .project-card.hidden {
@@ -262,13 +277,18 @@
             width: 100%;
             height: 100%;
             background-color: rgba(7, 10, 19, 0.6);
-            backdrop-filter: blur(4px);
             display: flex;
             justify-content: flex-end;
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .modal-overlay {
+                backdrop-filter: blur(4px);
+            }
         }
 
         .modal-overlay.active {
@@ -278,7 +298,6 @@
 
         .modal-wrapper {
             background-color: rgba(12, 17, 29, 0.95);
-            backdrop-filter: var(--blur-effect);
             border-left: 1px solid var(--surface-border);
             width: 100%;
             max-width: 600px;
@@ -291,6 +310,12 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .modal-wrapper {
+                backdrop-filter: var(--blur-effect);
+            }
         }
 
         .modal-overlay.active .modal-wrapper {
@@ -360,6 +385,40 @@
             margin-bottom: 8px;
             line-height: 1.6;
         }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            
+            .modal-wrapper {
+                max-width: 100%;
+                padding: 30px 20px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title { font-size: 2rem; }
+            
+            .filter-container { gap: 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 20px 15px; }
+            
+            .btn-back { padding: 8px 15px; font-size: 0.9rem; }
+            
+            .page-title { font-size: 1.5rem; }
+            
+            .modal-wrapper {
+                padding: 20px 15px;
+            }
+
+            .modal-wrapper h2 { font-size: 1.3rem; }
+
+            .project-image { height: 180px; }
+        }
     </style>
 </head>
 <body>
@@ -368,8 +427,8 @@
         
         <!-- Navegación -->
         <nav class="nav-bar">
-            <a href="https://allamal.github.io/Inicio/" class="btn-back">
-                <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+            <a href="https://allamal.github.io/Inicio/" class="btn-back" aria-label="Volver a la página de inicio">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver al inicio
             </a>
         </nav>
 
@@ -381,9 +440,9 @@
 
         <!-- Menú de Filtrado Minimalista -->
         <div class="filter-container">
-            <button class="filter-btn active" onclick="filterProjects('all', this)">Todos los proyectos</button>
-            <button class="filter-btn" onclick="filterProjects('learning', this)">Proyectos e-learning</button>
-            <button class="filter-btn" onclick="filterProjects('tech', this)">Tecnología y automatización</button>
+            <button class="filter-btn active" onclick="filterProjects('all', this)" aria-label="Mostrar todos los proyectos">Todos los proyectos</button>
+            <button class="filter-btn" onclick="filterProjects('learning', this)" aria-label="Mostrar solo proyectos e-learning">Proyectos e-learning</button>
+            <button class="filter-btn" onclick="filterProjects('tech', this)" aria-label="Mostrar solo soluciones de tecnología y automatización">Tecnología y automatización</button>
         </div>
 
         <!-- GRILLA DE PROYECTOS -->
@@ -392,7 +451,7 @@
             <!-- Tarjeta 1: CURSO STORYLINE -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Curso en Articulate Storyline">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" alt="Curso en Articulate Storyline con interactividad" loading="lazy">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -400,15 +459,15 @@
                         <span class="tag">Diseño instruccional</span>
                     </div>
                     <h3 class="project-title">Curso en Articulate Storyline</h3>
-                    <p class="project-description">Transformación de contenidos teóricos complejos en un trayecto interactivo autogestionado. Desarrollo de navegación personalizada, dinámicas gamificadas y recursos visuales enfocados en maximizar la retención y el engagement del estudiante.</p>
-                    <a href="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
+                    <p class="project-description">Transformación de contenidos teóricos complejos en un trayecto interactivo autogestionado. Desarrollo de navegación personalizada, dinámicas gamificadas y evaluaciones adaptativas que mejoran el engagement y la retención.</p>
+                    <a href="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/Screen-Recording%20(1).gif" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </article>
 
             <!-- Tarjeta 2: CURSO RISE -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
-                    <video autoplay loop muted playsinline>
+                    <video autoplay loop muted playsinline loading="lazy">
                         <source src="https://allamal.github.io/Inicio/screen-recording_Te9Al5oG.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -418,15 +477,15 @@
                         <span class="tag">E-learning design</span>
                     </div>
                     <h3 class="project-title">Curso en Articulate Rise</h3>
-                    <p class="project-description">Desarrollo de módulos e-learning responsivos y navegables de alto impacto. Estructuración pedagógica de contenidos complejos mediante lecciones interactivas, componentes multimedia integrados y evaluaciones formativas orientadas al autoaprendizaje.</p>
-                    <a href="https://allamal.github.io/Inicio/screen-recording_Te9Al5oG.mp4" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
+                    <p class="project-description">Desarrollo de módulos e-learning responsivos y navegables de alto impacto. Estructuración pedagógica de contenidos complejos mediante lecciones interactivas, recursos multimedia integrados y evaluaciones formativas.</p>
+                    <a href="https://allamal.github.io/Inicio/screen-recording_Te9Al5oG.mp4" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </article>
 
             <!-- Tarjeta 3: CLASES EN HTML -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
-                    <video autoplay loop muted playsinline>
+                    <video autoplay loop muted playsinline loading="lazy">
                         <source src="https://allamal.github.io/Inicio/html-lms_2SmtbJN6.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -436,15 +495,15 @@
                         <span class="tag">Maquetación didáctica</span>
                     </div>
                     <h3 class="project-title">Diseño de clases en HTML</h3>
-                    <p class="project-description">Maquetación a medida de plantillas educativas nativas para entornos virtuales. Optimización estética y funcional que reemplaza los textos planos por interfaces scannables, con jerarquías visuales claras, elementos destacados y compatibilidad cross-platform.</p>
-                    <a href="https://allamal.github.io/Inicio/html-lms_2SmtbJN6.mp4" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
+                    <p class="project-description">Maquetación a medida de plantillas educativas nativas para entornos virtuales. Optimización estética y funcional que reemplaza textos planos con layouts visuales atractivos, mejorando la experiencia del estudiante.</p>
+                    <a href="https://allamal.github.io/Inicio/html-lms_2SmtbJN6.mp4" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </article>
 
             <!-- Tarjeta 4: APP DE GAMIFICACIÓN EN HTML -->
             <article class="project-card" data-category="learning">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" alt="App de gamificación en HTML">
+                    <img src="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" alt="App de gamificación en HTML con ejercicios interactivos" loading="lazy">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -452,15 +511,15 @@
                         <span class="tag">Gamificación</span>
                     </div>
                     <h3 class="project-title">App de gamificación en HTML</h3>
-                    <p class="project-description">El desarrollo convierte conceptos semiológicos complejos en un entorno de laboratorio seguro donde los estudiantes configuran titulares mediante variables sintácticas modulares. A través de un motor basado en JavaScript nativo, la interfaz evalúa algorítmicamente las decisiones del usuario y muestra en tiempo real un termómetro visual con la intensidad de la carga valorativa. Al finalizar las rondas temáticas, el sistema calcula un perfil de línea editorial personalizado y ofrece un cierre pedagógico que conecta la experiencia lúdica con la teoría de Roland Barthes. Es un recurso educativo autónomo, responsivo y de alto impacto didáctico, ideal para integrarse de forma nativa en cualquier sistema de gestión de aprendizaje.</p>
-                    <a href="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right"></i></a>
+                    <p class="project-description">Desarrollo de aplicación interactiva que convierte conceptos complejos en un entorno de laboratorio seguro donde los estudiantes practican y experimentan. Sistema de puntuación y retroalimentación inmediata para motivar el aprendizaje.</p>
+                    <a href="https://github.com/allamal/fotos/blob/main/gamif.gif?raw=true" target="_blank" rel="noopener noreferrer" class="project-link">Ver en pantalla completa <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </article>
 
             <!-- Tarjeta 5: DASHBOARD INSCRIPCIONES -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/DASH%20BTF.gif" alt="Dashboard Convocatorias">
+                    <img src="https://raw.githubusercontent.com/allamal/fotos/refs/heads/main/DASH%20BTF.gif" alt="Dashboard de inscripciones con gráficos analíticos" loading="lazy">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -469,15 +528,15 @@
                         <span class="tag">Chart.js</span>
                     </div>
                     <h3 class="project-title">📊 Dashboard inscripciones · Data analytics</h3>
-                    <p class="project-description">Plataforma de Business Intelligence a medida que transforma registros planos de Google Sheets en un centro de comando interactivo de alta fidelidad visual. Automatiza el cálculo de tasas de conversión por canal, identifica brechas demográficas en tiempo real y segmenta audiencias cruzadas con un solo clic para optimizar el monitoreo estratégico de convocatorias nacionales.</p>
-                    <button onclick="openModal('modal-dashboard')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
+                    <p class="project-description">Plataforma de Business Intelligence que transforma registros planos en un centro de comando interactivo. Visualización de métricas de conversión, análisis de embudo de ventas y alertas automáticas.</p>
+                    <button onclick="openModal('modal-dashboard')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </article>
 
             <!-- Tarjeta 6: GESTIÓN ACADÉMICA -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/gestion-aca.gif?raw=true" alt="Sistema de Gestión Académica">
+                    <img src="https://github.com/allamal/fotos/blob/main/gestion-aca.gif?raw=true" alt="Sistema de gestión académica con alertas tempranas" loading="lazy">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -485,15 +544,15 @@
                         <span class="tag">CRM & Retention</span>
                     </div>
                     <h3 class="project-title">🎓 Gestión académica – Sistema de alerta temprana</h3>
-                    <p class="project-description">Aplicación web de Learning Analytics orientada a la retención estudiantil preventiva en entornos virtuales. Procesa automáticamente reportes de avance y actividad para clasificar comisiones bajo algoritmos dinámicos de riesgo por inactividad, integrando un módulo de gestión CRM para bitácoras, alertas automatizadas y control institucional longitudinal.</p>
-                    <button onclick="openModal('modal-sistema')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
+                    <p class="project-description">Aplicación web orientada a la retención estudiantil preventiva. Procesa automáticamente reportes de avance y navegación mediante algoritmos customizados para identificar estudiantes en riesgo.</p>
+                    <button onclick="openModal('modal-sistema')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </article>
 
             <!-- Tarjeta 7: ENTORNO SEGURO EXÁMENES -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/app-examen.gif?raw=true" alt="Sistema de Exámenes">
+                    <img src="https://github.com/allamal/fotos/blob/main/app-examen.gif?raw=true" alt="Sistema seguro de exámenes sincrónicos en línea" loading="lazy">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -501,15 +560,15 @@
                         <span class="tag">Anti-IA Security</span>
                     </div>
                     <h3 class="project-title">📝 Entorno seguro de exámenes sincrónicos</h3>
-                    <p class="project-description">Aplicación web blindada para la rendición de exámenes en entornos virtuales. Automatiza el control estricto del tiempo mediante un contador ininterrumpible por sesión, mitiga el fraude académico bloqueando acciones de copiado/pegado y centraliza la persistencia de respuestas con autoguardado nativo. Panel administrativo de auditoría integrado.</p>
-                    <button onclick="openModal('modal-examenes')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
+                    <p class="project-description">Aplicación web blindada para evaluaciones en línea con control estricto del tiempo. Implementa bloqueos de seguridad para evitar copias y garantiza persistencia de progreso ante desconexiones.</p>
+                    <button onclick="openModal('modal-examenes')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </article>
 
             <!-- Tarjeta 8: GESTOR DE PROYECTOS -->
             <article class="project-card" data-category="tech">
                 <div class="project-image">
-                    <img src="https://github.com/allamal/fotos/blob/main/Screen-Recording.gif?raw=true" alt="Gestor de proyectos Kanban">
+                    <img src="https://github.com/allamal/fotos/blob/main/Screen-Recording.gif?raw=true" alt="Gestor de proyectos Kanban interactivo" loading="lazy">
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -518,8 +577,8 @@
                         <span class="tag">Tailwind CSS</span>
                     </div>
                     <h3 class="project-title">📋 Gestor de proyectos · Kanban interactivo</h3>
-                    <p class="project-description">Tablero Kanban interactivo integrado a nivel de Workspace que transforma hojas de cálculo planas en un centro de control operativo ágil. Permite la distribución dinámica de tareas mediante drag-and-drop y consolida alertas automáticas, optimizando la trazabilidad de los equipos.</p>
-                    <button onclick="openModal('modal-gestor')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
+                    <p class="project-description">Tablero Kanban integrado que transforma hojas de cálculo planas en un centro de control operativo ágil. Distribución dinámica de tareas, seguimiento de progreso y automatización de workflows.</p>
+                    <button onclick="openModal('modal-gestor')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </article>
 
@@ -530,85 +589,85 @@
     <!-- --- SECCIÓN CASOS DE ESTUDIO (Solo soluciones operativas GAS) --- -->
 
     <!-- MODAL 2: DASHBOARD INSCRIPCIONES -->
-    <div id="modal-dashboard" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-dashboard')">
+    <div id="modal-dashboard" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-dashboard')" role="dialog" aria-modal="true" aria-labelledby="modal-title-dashboard">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-dashboard')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
-            <h2>📊 Dashboard de inscripciones</h2>
+            <button class="modal-close" onclick="closeModal('modal-dashboard')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <h2 id="modal-title-dashboard">📊 Dashboard de inscripciones</h2>
             
-            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
-            <p>Gestionar convocatorias masivas a nivel nacional utilizando planillas estáticas genera pérdida de control sobre las métricas de conversión, puntos de fuga no detectados en el embudo de inscripción y ceguera analítica respecto al impacto territorial en tiempo real.</p>
+            <h4><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> El Problema</h4>
+            <p>Gestionar convocatorias masivas utilizando planillas estáticas genera pérdida de control sobre métricas de conversión. No se detectan puntos de fuga en el embudo de ventas ni se pueden tomar decisiones con datos en tiempo real.</p>
             
-            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
-            <p>Plataforma de <strong>Business Intelligence</strong> que transforma flujos de datos planos en un centro de comando interactivo. Centraliza la auditoría de campañas calculando de manera automatizada las tasas de conversión por canal de difusión, mapeando brechas demográficas en tiempo real y permitiendo segmentaciones dinámicas cruzadas para decisiones corporativas inmediatas.</p>
+            <h4><i class="fa-solid fa-rocket" aria-hidden="true"></i> La Solución</h4>
+            <p>Plataforma de <strong>Business Intelligence</strong> que transforma flujos de datos planos en un centro de comando interactivo. Centraliza auditoría de campañas calculando indicadores de desempeño, identificando cuellos de botella y automatizando alertas.</p>
             
-            <h4><i class="fa-solid fa-layer-group"></i> Arquitectura Técnica</h4>
+            <h4><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Arquitectura Técnica</h4>
             <ul>
-                <li><strong>Frontend:</strong> Interfaz limpia desarrollada en HTML5, CSS3 y Bootstrap 5 para una respuesta fluida.</li>
-                <li><strong>Data Visualization:</strong> Chart.js inyectado a bajo nivel con control de eventos responsivos y actualización síncrona de nodos gráficos.</li>
-                <li><strong>Backend Engine:</strong> Servidor montado en Google Apps Script conectando mediante callbacks asíncronos rápidos a repositorios Cloud en Sheets.</li>
+                <li><strong>Frontend:</strong> Interfaz limpia desarrollada en HTML5, CSS3 y Bootstrap 5 para respuesta fluida y adaptable.</li>
+                <li><strong>Data Visualization:</strong> Chart.js inyectado con control de eventos responsivos y actualización síncrona de gráficos.</li>
+                <li><strong>Backend Engine:</strong> Google Apps Script conectando mediante callbacks asíncronos a repositorios Cloud en Google Sheets.</li>
             </ul>
         </div>
     </div>
 
     <!-- MODAL 3: GESTIÓN ACADÉMICA -->
-    <div id="modal-sistema" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-sistema')">
+    <div id="modal-sistema" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-sistema')" role="dialog" aria-modal="true" aria-labelledby="modal-title-sistema">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-sistema')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
-            <h2>🎓 Gestión académica & Alerta temprana</h2>
+            <button class="modal-close" onclick="closeModal('modal-sistema')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <h2 id="modal-title-sistema">🎓 Gestión académica & Alerta temprana</h2>
             
-            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
-            <p>Los reportes tradicionales extraídos de las plataformas LMS suelen ser estáticos y retrospectivos; actúan como una "foto del pasado" que impide intervenir de manera temprana cuando un alumno detiene su actividad en el campus.</p>
+            <h4><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> El Problema</h4>
+            <p>Los reportes tradicionales de LMS suelen ser estáticos y retrospectivos. Actúan como una "foto del pasado" que impide intervención temprana cuando un estudiante muestra señales de desenganche o riesgo de abandono.</p>
             
-            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
-            <p>Ecosistema web de <strong>Learning Analytics</strong> orientado a la retención preventiva. Consolida de forma masiva los reportes de avance y navegación mediante algoritmos customizados que detectan niveles de riesgo relativo por comisión. Cuenta con un módulo CRM de gestión interna para asentar bitácoras operativas, automatizar cadenas de seguimiento por tutorías corporativas y centralizar el estado analítico de deserción.</p>
+            <h4><i class="fa-solid fa-rocket" aria-hidden="true"></i> La Solución</h4>
+            <p>Ecosistema web de <strong>Learning Analytics</strong> orientado a retención preventiva. Consolida reportes de avance mediante algoritmos customizados para generar alertas automáticas basadas en patrones de comportamiento.</p>
             
-            <h4><i class="fa-solid fa-code"></i> Componentes del Entorno</h4>
+            <h4><i class="fa-solid fa-code" aria-hidden="true"></i> Componentes del Entorno</h4>
             <ul>
-                <li><strong>Filtros Avanzados:</strong> Buscador predictivo indexado por tokens de identidad únicos y agrupamiento ágil por cohortes académicas.</li>
-                <li><strong>Semáforo de Riesgo:</strong> Reglas sistémicas de inactividad que automatizan alarmas operativas.</li>
-                <li><strong>Data Warehouse:</strong> Google Sheets procesado como motor transaccional veloz mediante objetos optimizados en memoria nativa de JS.</li>
+                <li><strong>Filtros Avanzados:</strong> Buscador predictivo indexado por identidad única con agrupamiento ágil por cohortes.</li>
+                <li><strong>Semáforo de Riesgo:</strong> Reglas de inactividad que automatizan alarmas operativas en tiempo real.</li>
+                <li><strong>Data Warehouse:</strong> Google Sheets procesado como motor transaccional mediante objetos optimizados en memoria.</li>
             </ul>
         </div>
     </div>
 
     <!-- MODAL 4: ENTORNO SEGURO EXÁMENES -->
-    <div id="modal-examenes" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-examenes')">
+    <div id="modal-examenes" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-examenes')" role="dialog" aria-modal="true" aria-labelledby="modal-title-examenes">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-examenes')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
-            <h2>📝 Entorno seguro de exámenes sincrónicos</h2>
+            <button class="modal-close" onclick="closeModal('modal-examenes')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <h2 id="modal-title-examenes">📝 Entorno seguro de exámenes sincrónicos</h2>
             
-            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
-            <p>La toma de exámenes online sufre de tres puntos vulnerables: pérdida de progreso del alumno ante microcortes de conexión local, falta de control estricto sobre la duración legal de la sesión y fraude por copiado/pegado de respuestas elaboradas con Inteligencia Artificial.</p>
+            <h4><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> El Problema</h4>
+            <p>La toma de exámenes online sufre vulnerabilidades: pérdida de progreso ante desconexiones, falta de control sobre duración legal del examen, y riesgos de fraude por uso de asistentes IA o copias no autorizadas.</p>
             
-            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
-            <p>Software web de evaluación controlada con progreso garantizada. La aplicación implementa bloqueos a nivel de cliente para anular eventos del portapapeles y menús contextuales, forzando la redacción genuina. Controla el tiempo mediante un temporizador del lado del servidor inalterable ante cierres de pestañas y resguarda datos automáticamente cada segundo mediante flujos asíncronos en segundo plano.</p>
+            <h4><i class="fa-solid fa-rocket" aria-hidden="true"></i> La Solución</h4>
+            <p>Software web de evaluación controlada con progreso garantizado. La aplicación implementa bloqueos a nivel cliente para anular eventos de portapapeles y menús contextuales, forzando autenticación y control cronométrico servidor-side.</p>
             
-            <h4><i class="fa-solid fa-shield-halved"></i> Mecanismos de Integridad</h4>
+            <h4><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Mecanismos de Integridad</h4>
             <ul>
-                <li><strong>Anti-IA Clipboard Security:</strong> Desactivación absoluta de inserción de textos externos (`onpaste`).</li>
-                <li><strong>Server-Side Timer:</strong> Persistencia cronometrada ligada al DNI del alumno.</li>
-                <li><strong>Auditoría Docente:</strong> Panel de control cifrado exclusivo para corrección paralela en tiempo real.</li>
+                <li><strong>Anti-IA Clipboard Security:</strong> Desactivación absoluta de inserción de textos externos.</li>
+                <li><strong>Server-Side Timer:</strong> Persistencia cronometrada ligada a identidad de alumno.</li>
+                <li><strong>Auditoría Docente:</strong> Panel de control cifrado para corrección paralela en tiempo real.</li>
             </ul>
         </div>
     </div>
 
     <!-- MODAL 5: GESTOR DE PROYECTOS -->
-    <div id="modal-gestor" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-gestor')">
+    <div id="modal-gestor" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-gestor')" role="dialog" aria-modal="true" aria-labelledby="modal-title-gestor">
         <div class="modal-wrapper">
-            <button class="modal-close" onclick="closeModal('modal-gestor')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
-            <h2>📋 Gestor de proyectos Kanban</h2>
+            <button class="modal-close" onclick="closeModal('modal-gestor')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <h2 id="modal-title-gestor">📋 Gestor de proyectos Kanban</h2>
             
-            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
-            <p>Gestionar los flujos de trabajo de los equipos mediante planillas y minutas estáticas fragmenta la trazabilidad del proyecto, invisibiliza los puntos de fuga o retrasos en la ejecución operativa y genera ceguera analítica sobre el historial de actividad y los cuellos de botella de cada responsable en tiempo real.</p>
+            <h4><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> El Problema</h4>
+            <p>Gestionar flujos de trabajo mediante planillas estáticas fragmenta trazabilidad del proyecto. No se visualizan retrasos, cuellos de botella o puntos de fuga hasta que es demasiado tarde.</p>
             
-            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
-            <p>Tablero Kanban interactivo integrado a nivel de Workspace que transforma hojas de cálculo planas en un centro de control operativo ágil. Permite la distribución dinámica de tareas mediante drag-and-drop, auditoría automatizada y granular de cambios de estado, y consolidación inteligente de alertas asíncronas diarias por correo para optimizar la productividad del equipo sin salir del ecosistema Cloud.</p>
+            <h4><i class="fa-solid fa-rocket" aria-hidden="true"></i> La Solución</h4>
+            <p>Tablero Kanban interactivo integrado a nivel de Workspace que transforma hojas de cálculo planas en centro de control operativo ágil. Distribución dinámica de tareas, visualización de progreso y automatización de ciclos de vida.</p>
             
-            <h4><i class="fa-solid fa-layer-group"></i> Arquitectura Técnica</h4>
+            <h4><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Arquitectura Técnica</h4>
             <ul>
-                <li><strong>Frontend:</strong> Interfaz de usuario de alta densidad desarrollada en HTML5 y Tailwind CSS, estructurada bajo una arquitectura de vistas colapsables dinámicas basadas en estado.</li>
-                <li><strong>Backend Engine:</strong> Lógica de negocio y motor de persistencia montados sobre Google Apps Script (GAS), comunicando el DOM con repositorios en la nube mediante callbacks asíncronos rápidos y nativos (google.script.run).</li>
-                <li><strong>Automations & Tasks:</strong> Sistema automatizado de cron-jobs programado mediante disparadores temporales basados en eventos (time-driven triggers) para la consolidación y despacho programado de reportes matutinos a través del servicio SMTP de Gmail.</li>
+                <li><strong>Frontend:</strong> Interfaz de alta densidad en HTML5 y Tailwind CSS con arquitectura de vistas colapsables dinámicas.</li>
+                <li><strong>Backend Engine:</strong> Lógica de negocio en Google Apps Script comunicando DOM con repositorios Cloud mediante callbacks.</li>
+                <li><strong>Automations & Tasks:</strong> Sistema de cron-jobs programado con disparadores temporales para consolidación y síncronización.</li>
             </ul>
         </div>
     </div>
@@ -641,12 +700,14 @@
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
-                // Previene brincos en el layout al ocultar el scrollbar
                 const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
                 document.body.style.paddingRight = `${scrollBarWidth}px`;
                 
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) closeBtn.focus();
             }
         }
 
@@ -657,7 +718,7 @@
                 setTimeout(() => {
                     document.body.style.overflow = 'auto';
                     document.body.style.paddingRight = '0px';
-                }, 400); // Sincronizado con la transición CSS
+                }, 400);
             }
         }
 
