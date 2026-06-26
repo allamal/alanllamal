@@ -506,6 +506,23 @@
                 </div>
             </article>
 
+            <!-- Tarjeta 8: GESTOR DE PROYECTOS -->
+            <article class="project-card" data-category="tech">
+                <div class="project-image">
+                    <img src="https://github.com/allamal/fotos/blob/main/Screen-Recording.gif?raw=true" alt="Gestor de proyectos Kanban">
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Kanban</span>
+                        <span class="tag">GAS WebApp</span>
+                        <span class="tag">Tailwind CSS</span>
+                    </div>
+                    <h3 class="project-title">📋 Gestor de proyectos · Kanban interactivo</h3>
+                    <p class="project-description">Tablero Kanban interactivo integrado a nivel de Workspace que transforma hojas de cálculo planas en un centro de control operativo ágil. Permite la distribución dinámica de tareas mediante drag-and-drop y consolida alertas automáticas, optimizando la trazabilidad de los equipos.</p>
+                    <button onclick="openModal('modal-gestor')" class="project-link">Ver proyecto completo <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </article>
+
         </div>
 
     </div>
@@ -571,6 +588,27 @@
                 <li><strong>Anti-IA Clipboard Security:</strong> Desactivación absoluta de inserción de textos externos (`onpaste`).</li>
                 <li><strong>Server-Side Timer:</strong> Persistencia cronometrada ligada al DNI del alumno.</li>
                 <li><strong>Auditoría Docente:</strong> Panel de control cifrado exclusivo para corrección paralela en tiempo real.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MODAL 5: GESTOR DE PROYECTOS -->
+    <div id="modal-gestor" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal-gestor')">
+        <div class="modal-wrapper">
+            <button class="modal-close" onclick="closeModal('modal-gestor')" aria-label="Cerrar modal"><i class="fa-solid fa-xmark"></i></button>
+            <h2>📋 Gestor de proyectos Kanban</h2>
+            
+            <h4><i class="fa-solid fa-circle-exclamation"></i> El Problema</h4>
+            <p>Gestionar los flujos de trabajo de los equipos mediante planillas y minutas estáticas fragmenta la trazabilidad del proyecto, invisibiliza los puntos de fuga o retrasos en la ejecución operativa y genera ceguera analítica sobre el historial de actividad y los cuellos de botella de cada responsable en tiempo real.</p>
+            
+            <h4><i class="fa-solid fa-rocket"></i> La Solución</h4>
+            <p>Tablero Kanban interactivo integrado a nivel de Workspace que transforma hojas de cálculo planas en un centro de control operativo ágil. Permite la distribución dinámica de tareas mediante drag-and-drop, auditoría automatizada y granular de cambios de estado, y consolidación inteligente de alertas asíncronas diarias por correo para optimizar la productividad del equipo sin salir del ecosistema Cloud.</p>
+            
+            <h4><i class="fa-solid fa-layer-group"></i> Arquitectura Técnica</h4>
+            <ul>
+                <li><strong>Frontend:</strong> Interfaz de usuario de alta densidad desarrollada en HTML5 y Tailwind CSS, estructurada bajo una arquitectura de vistas colapsables dinámicas basadas en estado.</li>
+                <li><strong>Backend Engine:</strong> Lógica de negocio y motor de persistencia montados sobre Google Apps Script (GAS), comunicando el DOM con repositorios en la nube mediante callbacks asíncronos rápidos y nativos (google.script.run).</li>
+                <li><strong>Automations & Tasks:</strong> Sistema automatizado de cron-jobs programado mediante disparadores temporales basados en eventos (time-driven triggers) para la consolidación y despacho programado de reportes matutinos a través del servicio SMTP de Gmail.</li>
             </ul>
         </div>
     </div>
